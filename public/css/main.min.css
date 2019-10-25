@@ -1,0 +1,268 @@
+@font-face {
+  font-family: "robotoBold";
+  src: url('../fonts/robotoBold.eot');
+  src: url('../fonts/robotoBold.eot?iefix') format('eot'), url('../fonts/robotoBold.woff') format('woff'), url('../fonts/robotoBold.ttf') format('truetype'), url('../fonts/robotoBold.svg#webfontaBGRTKCG') format('svg');
+}
+@font-face {
+  font-family: "robotoRegular";
+  src: url('../fonts/robotoRegular.eot');
+  src: url('../fonts/robotoRegular?iefix') format('eot'), url('../fonts/robotoRegular.woff') format('woff'), url('../fonts/robotoRegular.ttf') format('truetype'), url('../fonts/robotoRegular.svg#webfontaBGRTKCG') format('svg');
+}
+@font-face {
+  font-family: "cocogoose";
+  src: url('../fonts/cocogoose.eot');
+  src: url('../fonts/cocogoose?iefix') format('eot'), url('../fonts/cocogoose.woff') format('woff'), url('../fonts/cocogoose.ttf') format('truetype'), url('../fonts/cocogoose.svg#webfontaBGRTKCG') format('svg');
+}
+@font-face {
+  font-family: "Glyphicons Halflings";
+  src: url('../fonts/glyphicons-halflings-regular.eot');
+  src: url('../fonts/glyphicons-halflings-regular.eot?iefix') format('eot'), url('../fonts/glyphicons-halflings-regular.woff') format('woff'), url('../fonts/glyphicons-halflings-regular.ttf') format('truetype'), url('../fonts/glyphicons-halflings-regular.svg#webfontaBGRTKCG') format('svg');
+}
+@font-face {
+  font-family: "myriad";
+  src: url(../fonts/MyriadPro.otf) format("truetype");
+}
+body {
+  margin: 0px;
+  padding: 0px;
+  background-color: #343435;
+  font-family: 'Roboto', sans-serif;
+}
+body .nav-top {
+  height: 100px;
+  box-shadow: 0px 0px 7px 1px #343435;
+  -webkit-transition: height 0.2s;
+  /* Safari */
+  transition: height 0.2s;
+}
+body .nav-top .logo-ateneu {
+  width: 100px;
+  -webkit-transition: width 0.2s;
+  /* Safari */
+  transition: width 0.2s;
+}
+body .nav-top .menu-drop {
+  margin-top: 15px;
+}
+body .nav-top.fixed-menu {
+  height: 60px;
+}
+body .nav-top.fixed-menu .logo-ateneu {
+  width: 60px;
+}
+body #main {
+  height: 100vh;
+  padding-top: 100px;
+  margin-left: 197px;
+  -webkit-transition: padding-top 0.2s;
+  /* Safari */
+  transition: padding-top 0.2s;
+}
+body #main.fixed-menu {
+  padding-top: 60px;
+}
+body #main.fixed-menu .content .options-menu {
+  position: fixed;
+  top: 0px;
+  z-index: 1030;
+  margin: 0px;
+  margin-top: 10px;
+}
+body #main .aside {
+  float: left;
+  height: 100vh;
+  width: 197px;
+  background-color: #565657;
+  margin: 0px 0px 0px -197px;
+  position: fixed;
+}
+body #main .content {
+  float: left;
+  width: 100%;
+  min-width: 567px;
+  padding: 0px 20px 0px 20px;
+  background-color: #f8f8f8;
+  min-height: 70vh;
+}
+body #main .content .options-menu {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+body #modal-carnet .modal-body .carnet-content {
+  margin-top: 10px;
+}
+body #modal-carnet .modal-body .carnet-content .carnet {
+  margin: 0px auto;
+}
+body a {
+  color: #fff;
+}
+body a:hover {
+  color: #fff;
+}
+body a:focus {
+  color: #fff;
+}
+body a:active {
+  color: #fff;
+}
+body .fa-angle-left {
+  margin-right: 25px;
+}
+body {
+  margin: 0px;
+  padding: 0px;
+  background-color: #343435;
+  font-family: 'Roboto', sans-serif;
+}
+body .nav-top {
+  height: 100px;
+  box-shadow: 0px 0px 7px 1px #343435;
+  -webkit-transition: height 0.2s;
+  /* Safari */
+  transition: height 0.2s;
+}
+body .nav-top .logo-ateneu {
+  width: 100px;
+  -webkit-transition: width 0.2s;
+  /* Safari */
+  transition: width 0.2s;
+}
+body .nav-top .menu-drop {
+  margin-top: 15px;
+}
+body .nav-top.fixed-menu {
+  height: 60px;
+}
+body .nav-top.fixed-menu .logo-ateneu {
+  width: 60px;
+}
+body #main {
+  height: 100vh;
+  padding-top: 100px;
+  margin-left: 197px;
+  -webkit-transition: padding-top 0.2s;
+  /* Safari */
+  transition: padding-top 0.2s;
+}
+body #main.fixed-menu {
+  padding-top: 60px;
+}
+body #main.fixed-menu .content .options-menu {
+  position: fixed;
+  top: 0px;
+  z-index: 1030;
+  margin: 0px;
+  margin-top: 10px;
+}
+body #main .aside {
+  float: left;
+  height: 100vh;
+  width: 197px;
+  background-color: #565657;
+  margin: 0px 0px 0px -197px;
+  position: fixed;
+}
+body #main .content {
+  float: left;
+  width: 100%;
+  min-width: 567px;
+  padding: 0px 20px 0px 20px;
+  background-color: #f8f8f8;
+  min-height: 70vh;
+}
+body #main .content .options-menu {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+body #modal-carnet .carnet-content {
+  width: 320px;
+  height: 175px;
+  margin: 50px auto;
+  background-image: url(../img/carnet_background.jpg);
+  background-size: contain;
+  background-repeat: no-repeat;
+  position: relative;
+}
+@media only screen and (min-width: 1024px) {
+  body #modal-carnet .carnet-content {
+    width: 600px;
+    height: 330px;
+  }
+}
+body #modal-carnet .carnet-content .row {
+  margin: 0px;
+}
+body #modal-carnet .carnet-content .carnet-info {
+  color: white;
+  font-size: 20px;
+  margin-top: 53px;
+}
+@media only screen and (min-width: 1024px) {
+  body #modal-carnet .carnet-content .carnet-info {
+    font-size: 25px;
+    margin-top: 90px;
+  }
+}
+body #modal-carnet .carnet-content .carnet-info .name-soci {
+  text-transform: capitalize;
+}
+body #modal-carnet .carnet-content .carnet-info .carnet {
+  width: 190px !important;
+  background: white;
+  padding-top: 5px !important;
+}
+@media only screen and (min-width: 1024px) {
+  body #modal-carnet .carnet-content .carnet-info .carnet {
+    padding-top: 8px !important;
+  }
+}
+body #modal-carnet .carnet-content .carnet-info .carnet object {
+  width: 190px !important;
+}
+body #modal-carnet .carnet-content .carnet-img {
+  margin-top: 53px;
+}
+@media only screen and (min-width: 1024px) {
+  body #modal-carnet .carnet-content .carnet-img {
+    margin-top: 90px;
+  }
+}
+body #modal-carnet .carnet-content .carnet-img img {
+  box-shadow: 0px 0px 10px 4px #cf0e29;
+}
+body a {
+  color: #fff;
+}
+body a:hover {
+  color: #fff;
+}
+body a:focus {
+  color: #fff;
+}
+body a:active {
+  color: #fff;
+}
+body .fa-angle-left {
+  margin-right: 25px;
+}
+#navbar-top .navbar-brand {
+  color: #777;
+}
+#navbar-top .soci-options .soci-img {
+  float: left;
+  width: 50px;
+}
+#navbar-top .soci-options .soci-name {
+  display: none;
+  float: left;
+}
+@media only screen and (min-width: 1024px) {
+  #navbar-top .soci-options .soci-name {
+    display: block;
+  }
+}
+#navbar-top button {
+  display: inline;
+  cursor: pointer;
+}

@@ -1,0 +1,143 @@
+@import 'modules/vars';
+
+body {
+    margin: 0px;
+    padding: 0px;
+    background-color: @color-body;
+    font-family: @font-Roboto;
+    .nav-top{
+        height: 100px;
+        box-shadow: 0px 0px 7px 1px #343435;
+        -webkit-transition: height 0.2s; /* Safari */
+        transition: height 0.2s;
+        .logo-ateneu{
+            width:100px;
+            -webkit-transition: width 0.2s; /* Safari */
+            transition: width 0.2s;
+        }
+        .menu-drop {
+            margin-top: 15px;
+        }
+        &.fixed-menu{
+            height:60px;
+            .logo-ateneu{
+                width:60px;
+            }
+        }
+    }
+
+    #main {
+        height: 100vh;
+        padding-top: 100px;
+        margin-left: 197px;
+        -webkit-transition: padding-top 0.2s; /* Safari */
+        transition: padding-top 0.2s;
+        &.fixed-menu{
+            padding-top:60px;
+            .content{
+                .options-menu{
+                    position: fixed;
+                    top: 0px;
+                    z-index: 1030;
+                    margin: 0px;
+                    margin-top: 10px;
+                }
+            }
+        }
+        .aside {
+            float: left;
+            height: 100vh;
+            width: 197px;
+            background-color: @color-aside;
+            margin: 0px 0px 0px -197px;
+            position: fixed;
+        }
+        .content{
+            float:left;
+            width:100%;
+            min-width: 567px;
+            padding: 0px 20px 0px 20px;
+            background-color: @color-content;
+            min-height: 70vh;
+            .options-menu{
+                margin-top:20px;
+                margin-bottom:20px;
+            }
+        }    
+    }
+
+   #modal-carnet{
+       .carnet-content{
+           width: 320px;
+           height: 175px;
+           margin: 50px auto;
+           background-image: url(../img/carnet_background.jpg);
+           background-size: contain;
+           background-repeat: no-repeat;
+           position:relative;
+           @media @media-laptop{
+               width: 600px;
+               height: 330px;
+            }
+            .row{
+                margin:0px;
+            }
+            .carnet-info{
+                color:white;               
+                font-size: 20px;     
+                margin-top:53px;           
+                @media @media-laptop{                                            
+                    font-size: 25px;       
+                    margin-top:90px;
+                }
+                .name-soci{              
+                    text-transform: capitalize;      
+                    @media @media-laptop{    
+                    }
+                }
+                .num-soci{
+                    @media @media-laptop{     
+                    }
+    
+                }
+                .carnet{
+                    width: 190px !important;
+                    background:white;
+                    padding-top: 5px !important;                    
+                    @media @media-laptop{
+                        padding-top: 8px !important;
+                    }
+                    object{
+                        width:190px !important;
+                    }
+                }
+            }
+            .carnet-img{
+                margin-top:53px;                   
+                @media @media-laptop{
+                    margin-top:90px;
+                }
+                img{
+                    box-shadow: 0px 0px 10px 4px #cf0e29;
+                }
+            }
+        }
+    }
+    
+
+    a{
+        color:@color-white;
+        &:hover{
+            color:@color-white;            
+        }
+        &:focus{
+            color:@color-white;            
+        }
+        &:active{
+            color:@color-white;            
+        }
+    }
+    .fa-angle-left {
+        margin-right: 25px;
+    }
+}
