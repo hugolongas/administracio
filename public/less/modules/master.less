@@ -10,14 +10,31 @@ body {
         box-shadow: 0px 0px 7px 1px #343435;
         -webkit-transition: height 0.2s; /* Safari */
         transition: height 0.2s;
-        .logo-ateneu{
-            width:100px;
-            -webkit-transition: width 0.2s; /* Safari */
-            transition: width 0.2s;
+        .navbar-brand{
+            color:#777;
+            .logo-ateneu{
+                width:100px;
+                -webkit-transition: width 0.2s; /* Safari */
+                transition: width 0.2s;
+            }
         }
-        .menu-drop {
-            margin-top: 15px;
+        .text-black{
+            color:#777;           
         }
+        .soci-options {
+            display: table;
+            .soci-img{
+                float:left;
+                width:50px;
+            }
+            .soci-name{           
+                display: none;
+                vertical-align: middle;
+                @media @media-laptop{          
+                    display:table-cell;
+                }
+            }        
+        }        
         &.fixed-menu{
             height:60px;
             .logo-ateneu{
@@ -29,28 +46,73 @@ body {
     #main {
         height: 100vh;
         padding-top: 100px;
-        margin-left: 197px;
+        margin-left: 60px;
         -webkit-transition: padding-top 0.2s; /* Safari */
         transition: padding-top 0.2s;
+        @media @media-laptop{
+            margin-left: 197px;
+        }
         &.fixed-menu{
-            padding-top:60px;
             .content{
                 .options-menu{
-                    position: fixed;
-                    top: 0px;
-                    z-index: 1030;
-                    margin: 0px;
-                    margin-top: 10px;
+                    position: relative;
+                    @media @media-laptop{
+                        position: fixed;
+                        top: 0px;
+                        z-index: 1030;
+                        margin: 0px;
+                        margin-top: 10px;       
+                    }
                 }
+                @media @media-laptop{
+                    padding-top:60px;
+                }
+            }
+        }
+        &.sidebar-toggled{
+            margin-left: 0px;            
+            @media @media-laptop{
+                margin-left: 60px;
+
+            &.fixed-menu{                
+                .content{
+                    .options-menu{
+                        @media @media-laptop{
+                            margin-left:137px;
+                        }
+                    }
+                }
+            }
             }
         }
         .aside {
             float: left;
             height: 100vh;
-            width: 197px;
+            width: 60px;
             background-color: @color-aside;
-            margin: 0px 0px 0px -197px;
-            position: fixed;
+            margin: 0px 0px 0px -60px;
+            position: fixed;            
+            @media @media-laptop{
+                width: 197px;
+                margin: 0px 0px 0px -197px;
+            }
+            
+            .aside-item{
+                display:inline-block;
+            }
+            &.toggled{
+                width:0px;
+                margin:0px 0px 0px 0px;
+                display: none;
+                @media @media-laptop{
+                    width:60px;
+                    margin:0px 0px 0px -60px;
+                    display: block;
+                }
+                .aside-item{
+                    display: none;
+                }
+            }
         }
         .content{
             float:left;
@@ -122,22 +184,5 @@ body {
                 }
             }
         }
-    }
-    
-
-    a{
-        color:@color-white;
-        &:hover{
-            color:@color-white;            
-        }
-        &:focus{
-            color:@color-white;            
-        }
-        &:active{
-            color:@color-white;            
-        }
-    }
-    .fa-angle-left {
-        margin-right: 25px;
     }
 }

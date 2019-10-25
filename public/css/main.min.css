@@ -22,78 +22,6 @@
   font-family: "myriad";
   src: url(../fonts/MyriadPro.otf) format("truetype");
 }
-body {
-  margin: 0px;
-  padding: 0px;
-  background-color: #343435;
-  font-family: 'Roboto', sans-serif;
-}
-body .nav-top {
-  height: 100px;
-  box-shadow: 0px 0px 7px 1px #343435;
-  -webkit-transition: height 0.2s;
-  /* Safari */
-  transition: height 0.2s;
-}
-body .nav-top .logo-ateneu {
-  width: 100px;
-  -webkit-transition: width 0.2s;
-  /* Safari */
-  transition: width 0.2s;
-}
-body .nav-top .menu-drop {
-  margin-top: 15px;
-}
-body .nav-top.fixed-menu {
-  height: 60px;
-}
-body .nav-top.fixed-menu .logo-ateneu {
-  width: 60px;
-}
-body #main {
-  height: 100vh;
-  padding-top: 100px;
-  margin-left: 197px;
-  -webkit-transition: padding-top 0.2s;
-  /* Safari */
-  transition: padding-top 0.2s;
-}
-body #main.fixed-menu {
-  padding-top: 60px;
-}
-body #main.fixed-menu .content .options-menu {
-  position: fixed;
-  top: 0px;
-  z-index: 1030;
-  margin: 0px;
-  margin-top: 10px;
-}
-body #main .aside {
-  float: left;
-  height: 100vh;
-  width: 197px;
-  background-color: #565657;
-  margin: 0px 0px 0px -197px;
-  position: fixed;
-}
-body #main .content {
-  float: left;
-  width: 100%;
-  min-width: 567px;
-  padding: 0px 20px 0px 20px;
-  background-color: #f8f8f8;
-  min-height: 70vh;
-}
-body #main .content .options-menu {
-  margin-top: 20px;
-  margin-bottom: 20px;
-}
-body #modal-carnet .modal-body .carnet-content {
-  margin-top: 10px;
-}
-body #modal-carnet .modal-body .carnet-content .carnet {
-  margin: 0px auto;
-}
 body a {
   color: #fff;
 }
@@ -122,14 +50,33 @@ body .nav-top {
   /* Safari */
   transition: height 0.2s;
 }
-body .nav-top .logo-ateneu {
+body .nav-top .navbar-brand {
+  color: #777;
+}
+body .nav-top .navbar-brand .logo-ateneu {
   width: 100px;
   -webkit-transition: width 0.2s;
   /* Safari */
   transition: width 0.2s;
 }
-body .nav-top .menu-drop {
-  margin-top: 15px;
+body .nav-top .text-black {
+  color: #777;
+}
+body .nav-top .soci-options {
+  display: table;
+}
+body .nav-top .soci-options .soci-img {
+  float: left;
+  width: 50px;
+}
+body .nav-top .soci-options .soci-name {
+  display: none;
+  vertical-align: middle;
+}
+@media only screen and (min-width: 1024px) {
+  body .nav-top .soci-options .soci-name {
+    display: table-cell;
+  }
 }
 body .nav-top.fixed-menu {
   height: 60px;
@@ -140,28 +87,77 @@ body .nav-top.fixed-menu .logo-ateneu {
 body #main {
   height: 100vh;
   padding-top: 100px;
-  margin-left: 197px;
+  margin-left: 60px;
   -webkit-transition: padding-top 0.2s;
   /* Safari */
   transition: padding-top 0.2s;
 }
-body #main.fixed-menu {
-  padding-top: 60px;
+@media only screen and (min-width: 1024px) {
+  body #main {
+    margin-left: 197px;
+  }
 }
 body #main.fixed-menu .content .options-menu {
-  position: fixed;
-  top: 0px;
-  z-index: 1030;
-  margin: 0px;
-  margin-top: 10px;
+  position: relative;
+}
+@media only screen and (min-width: 1024px) {
+  body #main.fixed-menu .content .options-menu {
+    position: fixed;
+    top: 0px;
+    z-index: 1030;
+    margin: 0px;
+    margin-top: 10px;
+  }
+}
+@media only screen and (min-width: 1024px) {
+  body #main.fixed-menu .content {
+    padding-top: 60px;
+  }
+}
+body #main.sidebar-toggled {
+  margin-left: 0px;
+}
+@media only screen and (min-width: 1024px) {
+  body #main.sidebar-toggled {
+    margin-left: 60px;
+  }
+}
+@media only screen and (min-width: 1024px) and only screen and (min-width: 1024px) {
+  body #main.sidebar-toggled.fixed-menu .content .options-menu {
+    margin-left: 137px;
+  }
 }
 body #main .aside {
   float: left;
   height: 100vh;
-  width: 197px;
+  width: 60px;
   background-color: #565657;
-  margin: 0px 0px 0px -197px;
+  margin: 0px 0px 0px -60px;
   position: fixed;
+}
+@media only screen and (min-width: 1024px) {
+  body #main .aside {
+    width: 197px;
+    margin: 0px 0px 0px -197px;
+  }
+}
+body #main .aside .aside-item {
+  display: inline-block;
+}
+body #main .aside.toggled {
+  width: 0px;
+  margin: 0px 0px 0px 0px;
+  display: none;
+}
+@media only screen and (min-width: 1024px) {
+  body #main .aside.toggled {
+    width: 60px;
+    margin: 0px 0px 0px -60px;
+    display: block;
+  }
+}
+body #main .aside.toggled .aside-item {
+  display: none;
 }
 body #main .content {
   float: left;
@@ -230,39 +226,4 @@ body #modal-carnet .carnet-content .carnet-img {
 }
 body #modal-carnet .carnet-content .carnet-img img {
   box-shadow: 0px 0px 10px 4px #cf0e29;
-}
-body a {
-  color: #fff;
-}
-body a:hover {
-  color: #fff;
-}
-body a:focus {
-  color: #fff;
-}
-body a:active {
-  color: #fff;
-}
-body .fa-angle-left {
-  margin-right: 25px;
-}
-#navbar-top .navbar-brand {
-  color: #777;
-}
-#navbar-top .soci-options .soci-img {
-  float: left;
-  width: 50px;
-}
-#navbar-top .soci-options .soci-name {
-  display: none;
-  float: left;
-}
-@media only screen and (min-width: 1024px) {
-  #navbar-top .soci-options .soci-name {
-    display: block;
-  }
-}
-#navbar-top button {
-  display: inline;
-  cursor: pointer;
 }

@@ -22,4 +22,12 @@ $(document).ready(function () {
     if (num_soci > 0) {
         $("#carnet").barcode(num_soci.trim(),"code39",settings);
     }
+
+    $("#sidebarToggle, #sidebarToggleTop").on('click', function(e) {
+        $("#main").toggleClass("sidebar-toggled");
+        $(".aside").toggleClass("toggled");
+        if ($(".aside").hasClass("toggled")) {
+          $('.aside .collapse').collapse('hide');
+        };
+      });
 });
