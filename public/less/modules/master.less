@@ -5,40 +5,60 @@ body {
     padding: 0px;
     background-color: @color-body;
     font-family: @font-Roboto;
-    .nav-top{
+
+    .nav-top {
         height: 100px;
         box-shadow: 0px 0px 7px 1px #343435;
-        -webkit-transition: height 0.2s; /* Safari */
+        -webkit-transition: height 0.2s;
+        /* Safari */
         transition: height 0.2s;
-        .navbar-brand{
-            color:#777;
-            .logo-ateneu{
-                width:100px;
-                -webkit-transition: width 0.2s; /* Safari */
+
+        .navbar-brand {
+            color: #777;
+
+            .logo-ateneu {
+                width: 100px;
+                -webkit-transition: width 0.2s;
+                /* Safari */
                 transition: width 0.2s;
             }
         }
-        .text-black{
-            color:#777;           
+
+        .text-black {
+            color: #777;
         }
+
         .soci-options {
             display: table;
-            .soci-img{
-                float:left;
-                width:50px;
+
+            .soci-img {
+                float: left;
+                width: 50px;
             }
-            .soci-name{           
+
+            .soci-name {
                 display: none;
                 vertical-align: middle;
-                @media @media-laptop{          
-                    display:table-cell;
+
+                @media @media-laptop {
+                    display: table-cell;
                 }
-            }        
-        }        
-        &.fixed-menu{
-            height:60px;
-            .logo-ateneu{
-                width:60px;
+            }
+        }
+
+        &.fixed-menu {
+            height: 60px;
+
+            .logo-ateneu {
+                width: 60px;
+            }
+
+            .soci-img {
+                width: 30px;
+            }
+
+            .soci-name {
+                display: none;
             }
         }
     }
@@ -47,139 +67,171 @@ body {
         height: 100vh;
         padding-top: 100px;
         margin-left: 60px;
-        -webkit-transition: padding-top 0.2s; /* Safari */
+        -webkit-transition: padding-top 0.2s;
+        /* Safari */
         transition: padding-top 0.2s;
-        @media @media-laptop{
+
+        @media @media-laptop {
             margin-left: 197px;
         }
-        &.fixed-menu{
-            .content{
-                .options-menu{
+
+        &.fixed-menu {
+            .aside{
+                margin-top:-40px !important;
+            }
+            .content {
+                .options-menu {
                     position: relative;
-                    @media @media-laptop{
+
+                    @media @media-laptop {
                         position: fixed;
                         top: 0px;
                         z-index: 1030;
                         margin: 0px;
-                        margin-top: 10px;       
+                        margin-top: 10px;
                     }
                 }
-                @media @media-laptop{
-                    padding-top:60px;
+
+                @media @media-laptop {
+                    padding-top: 60px;
                 }
             }
         }
-        &.sidebar-toggled{
-            margin-left: 0px;            
-            @media @media-laptop{
+
+        &.sidebar-toggled {
+            margin-left: 0px;
+
+            @media @media-laptop {
                 margin-left: 60px;
 
-            &.fixed-menu{                
-                .content{
-                    .options-menu{
-                        @media @media-laptop{
-                            margin-left:137px;
+                &.fixed-menu {
+                    .content {
+                        .options-menu {
+                            @media @media-laptop {
+                                margin-left: 137px;
+                            }
                         }
                     }
                 }
             }
-            }
         }
+
         .aside {
             float: left;
             height: 100vh;
             width: 60px;
             background-color: @color-aside;
             margin: 0px 0px 0px -60px;
-            position: fixed;            
-            @media @media-laptop{
+            position: fixed;
+
+            @media @media-laptop {
                 width: 197px;
                 margin: 0px 0px 0px -197px;
             }
-            
-            .aside-item{
-                display:inline-block;
+
+            .aside-item {
+                display: inline-block;
             }
-            &.toggled{
-                width:0px;
-                margin:0px 0px 0px 0px;
+
+            &.toggled {
+                width: 0px;
+                margin: 0px 0px 0px 0px;
                 display: none;
-                @media @media-laptop{
-                    width:60px;
-                    margin:0px 0px 0px -60px;
+
+                @media @media-laptop {
+                    width: 60px;
+                    margin: 0px 0px 0px -60px;
                     display: block;
                 }
-                .aside-item{
+
+                .aside-item {
                     display: none;
                 }
             }
         }
-        .content{
-            float:left;
-            width:100%;
+
+        .content {
+            float: left;
+            width: 100%;
             min-width: 567px;
             padding: 0px 20px 0px 20px;
             background-color: @color-content;
             min-height: 70vh;
-            .options-menu{
-                margin-top:20px;
-                margin-bottom:20px;
+
+            .options-menu {
+                margin-top: 20px;
+                margin-bottom: 20px;
             }
-        }    
+        }
+
+        .error-message {
+            color: #bd2417;
+        }
     }
 
-   #modal-carnet{
-       .carnet-content{
-           width: 320px;
-           height: 175px;
-           margin: 50px auto;
-           background-image: url(../img/carnet_background.jpg);
-           background-size: contain;
-           background-repeat: no-repeat;
-           position:relative;
-           @media @media-laptop{
-               width: 600px;
-               height: 330px;
+    #modal-carnet {
+        .carnet-content {
+            width: 320px;
+            height: 175px;
+            margin: 50px auto;
+            background-image: url(../img/carnet_background.jpg);
+            background-size: contain;
+            background-repeat: no-repeat;
+            position: relative;
+
+            @media @media-laptop {
+                width: 600px;
+                height: 330px;
             }
-            .row{
-                margin:0px;
+
+            .row {
+                margin: 0px;
             }
-            .carnet-info{
-                color:white;               
-                font-size: 20px;     
-                margin-top:53px;           
-                @media @media-laptop{                                            
-                    font-size: 25px;       
-                    margin-top:90px;
+
+            .carnet-info {
+                color: white;
+                font-size: 20px;
+                margin-top: 53px;
+
+                @media @media-laptop {
+                    font-size: 25px;
+                    margin-top: 90px;
                 }
-                .name-soci{              
-                    text-transform: capitalize;      
-                    @media @media-laptop{    
-                    }
+
+                .name-soci {
+                    text-transform: capitalize;
+
+                    @media @media-laptop {}
                 }
-                .num-soci{
-                    @media @media-laptop{     
-                    }
-    
+
+                .num-soci {
+                    @media @media-laptop {}
+
                 }
-                .carnet{
+
+                .carnet {
                     width: 190px !important;
-                    background:white;
-                    padding-top: 5px !important;                    
-                    @media @media-laptop{
+                    background: white;
+                    padding-top: 5px !important;
+
+                    @media @media-laptop {
                         padding-top: 8px !important;
                     }
-                    object{
-                        width:190px !important;
+
+                    object {
+                        width: 190px !important;
                     }
                 }
             }
-            .carnet-img{
-                margin-top:53px;                   
-                @media @media-laptop{
-                    margin-top:90px;
+
+            .carnet-img {
+                margin-top: 53px;
+
+                @media @media-laptop {
+                    margin-top: 90px;
                 }
-                img{
+
+                img {
                     box-shadow: 0px 0px 10px 4px #cf0e29;
                 }
             }

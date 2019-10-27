@@ -25,6 +25,8 @@
 		<thead>
 			<tr>
 				<th>id</th>
+				<th>Veure</th>
+				<th>Editar</th>
 				<th>Imatge Soci</th>
 				<th>Número Soci</th>
 				<th>Nom</th>
@@ -38,7 +40,8 @@
 				<th>Email</th>
 				<th>Data Alta</th>
 				<th>Data baixa</th>
-				<th>Soci Protector</th>
+				<th>Soci</th>
+				<th>Cuota</th>
 				<th>Via</th>
 				<th>Carrer</th>
 				<th>Nº Carrer</th>
@@ -48,13 +51,46 @@
 				<th>Població</th>
 				<th>IBAN</th>
 				<th>Titular Compte</th>
-				<th>Titular DNI</th>
-				<th>Veure</th>
-				<th>Editar</th>
+				<th>Titular DNI</th>				
 				<th>Baixa</th>
 				<th>Eliminar</th>
 			</tr>
 		</thead>
+		<tbody></tbody>
+		<tfoot>
+			<tr>
+				<th>id</th>
+				<th>Veure</th>
+				<th>Editar</th>
+				<th>Imatge Soci</th>
+				<th>Número Soci</th>
+				<th>Nom</th>
+				<th>Cognom</th>
+				<th>Segon Cognom</th>
+				<th>DNI</th>
+				<th>Teléfon fixe</th>
+				<th>Teléfon Movil</th>
+				<th>Data Naixement</th>
+				<th>Sexe</th>
+				<th>Email</th>
+				<th>Data Alta</th>
+				<th>Data baixa</th>
+				<th>Soci</th>
+				<th>Cuota</th>
+				<th>Via</th>
+				<th>Carrer</th>
+				<th>Nº Carrer</th>
+				<th>Nº Pis</th>
+				<th>Nº Porta</th>
+				<th>Codig postal</th>
+				<th>Població</th>
+				<th>IBAN</th>
+				<th>Titular Compte</th>
+				<th>Titular DNI</th>				
+				<th>Baixa</th>
+				<th>Eliminar</th>
+			</tr>
+		</tfoot>
 	</table>
 </div>
 
@@ -99,6 +135,8 @@
 			ordering:true,
 			columns: [
 			{ data: 'id'},
+			{data: null},
+			{data: null},
 			{ data: 'soci_img'},
 			{ data: 'member_number'},
 			{ data: 'name'},
@@ -112,7 +150,8 @@
 			{ data: 'email'},
 			{ data: 'register_date'},
 			{ data: 'unregister_date'},			
-			{ data: 'soci_protector'},
+			{ data: 'tipus_soci'},
+			{ data: 'cuota_soci'},
 			{ data: 'road'},
 			{ data: 'address'},			
 			{ data: 'address_num'},
@@ -122,9 +161,7 @@
 			{ data: 'city'},
 			{ data: 'iban'},									
 			{ data: 'account_holder'},
-			{ data: 'dni_holder'},
-			{data: null},
-			{data: null},
+			{ data: 'dni_holder'},			
 			{data: null},
 			{data: null, defaultContent: '<button class="btn btn-secondary" accion="eliminar">Eliminar</button>'}
 			],
@@ -136,15 +173,6 @@
 			},
 			{
 				targets: [1],
-				render: function(data)
-				{
-					var imgSrc = data;
-					var src = '{{asset('storage/socis')}}/'+data;
-					return '<img class="img-fluid" src="'+src+'"></img>';
-				}
-			},
-			{
-				targets: [25],
 				render: function(data){
 					var id = data['id'];			
 					var url = '{{ route("socis.show", "id") }}';
@@ -153,7 +181,7 @@
 				}
 			},
 			{
-				targets: [26],
+				targets: [2],
 				render: function(data){
 					var id = data['id'];	
 					var url = '{{ route("socis.edit", "id") }}';
@@ -162,7 +190,16 @@
 				}
 			},
 			{
-				targets: [27],
+				targets: [3],
+				render: function(data)
+				{
+					var imgSrc = data;
+					var src = '{{asset('storage/socis')}}/'+data;
+					return '<img class="img-fluid" src="'+src+'"></img>';
+				}
+			},			
+			{
+				targets: [29],
 				render: function(data){
 					var unregister_date = data['unregister_date'];
 					var id = data['id'];

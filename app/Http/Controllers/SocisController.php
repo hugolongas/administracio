@@ -11,6 +11,7 @@ use App\Address;
 use App\User;
 use App\SociBaixa;
 use App\Section;
+use App\TipusSoci;
 use Storage;
 use Notification;
 use Validator;
@@ -49,7 +50,12 @@ class SocisController extends Controller
 		$lastMemberNumber = Soci::orderBy('id', 'desc')->first()->member_number + 1;
 		$roads = Road::orderBy('road')->get();
 		$addresses = Address::orderBy('address')->get();
-		return view('socis.create')->with('memberNumber', $lastMemberNumber)->with('roads', $roads)->with('addresses', $addresses);
+		$tipusSocis = TipusSoci::all();
+		return view('socis.create')
+		->with('memberNumber', $lastMemberNumber)
+		->with('roads', $roads)
+		->with('addresses', $addresses)
+		->with('tipusSocis', $tipusSocis);
 	}
 
 	public function store(Request $request)
@@ -57,16 +63,8 @@ class SocisController extends Controller
 		$validator = Validator::make($request->all(), [
 			'name' => 'required',
 			'surname' => 'required',
-			'secondSurname' => 'required',
-			'dni' => 'required',
-			'phone' => 'required',
-			'birthDate' => 'required',
-			'sex' => 'required',
-			'address' => 'required',
-			'addressNum' => 'required',
-			'postalCode' => 'required',
-			'city' => 'required',
-		]);
+			'secondSurname' => 'required'
+			]);
 		if ($validator->fails()) {
 			return Redirect::back()->withErrors($validator)
 				->withInput();
@@ -74,23 +72,56 @@ class SocisController extends Controller
 		$name = $request->input('name');
 		$surname = $request->input('surname');
 		$secondSurname = $request->input('secondSurname');
+
 		$dni = $request->input('dni');
+		if($dni==null)
+			$dni = "";
+		
 		$phone = $request->input('phone');
+		if($phone==null)
+			$phone = "";
+
 		$mobile = $request->input('mobile');
 		if ($mobile == null)
 			$mobile = "";
+
 		$email = $request->input('email');
 		if($email==null)
-		$email = "";
+			$email = "";
+
 		$birthDate = $request->input('birthDate');
-		$sex = $request->input('sex');
+		if($birthDate==null)
+			$birthDate=date('Y-m-d');
+
+		$sex = $request->input('sex');		
 		$road = $request->input('road');
+		if($road==null)
+			$road="";
+
 		$address = $request->input('address');
+		if($address==null)
+			$address="";
+
 		$addressNum = $request->input('addressNum');
+		if($addressNum==null)
+			$addressNum="";
+
 		$addressFloor = $request->input('addressFloor');
+		if ($addressFloor == null)
+			$addressFloor = '';
+
 		$addressDoor = $request->input('addressDoor');
+		if($addressDoor==null)
+			$addressDoor="";
+
 		$city = $request->input('city');
+		if($city==null)
+			$city="";
+
 		$postalCode = $request->input('postalCode');
+		if($postalCode==null)
+			$postalCode="";
+
 		$iban = $request->input('iban');
 		$correctIban = $request->input('correctIban');
 		if($iban==null)
@@ -100,8 +131,18 @@ class SocisController extends Controller
 		}
 		$accountHolder = $request->input('accountHolder');
 		$dniHolder = $request->input('dniHolder');
-		$sociProtector = $request->input('sociProtector');
 		$sociImg = $request->input('imgName');
+
+		//Cuota Soci
+		$tipus = $request->input('tipusSoci');
+		$tipusSoci = TipusSoci::where('tipus_soci',$tipus)->get();
+		$tSoci = $tipusSoci[0]->tipus_soci;
+		$cuotaSoci = $tipusSoci[0]->cuota_soci;
+		if($tSoci=='Protector')
+		{
+			$cuotaSoci = $request->input('cuotaSoci');
+		}
+		$observacions = $request->input('observacions');
 
 		$soci = new Soci;
 		$soci->member_number = Soci::orderBy('id', 'desc')->first()->member_number + 1;
@@ -120,23 +161,15 @@ class SocisController extends Controller
 		} else {
 			$soci->soci_img = 'default.png';
 		}
+
 		$soci->email = $email;
-
 		$soci->register_date = date('Y-m-d');
-		$soci->unregister_date = null;
-		$soci->soci_protector = $sociProtector;
-
+		$soci->unregister_date = null;		
 		$soci->road = $road;
 		$soci->address = $address;
 		$soci->address_num = $addressNum;
-		if ($addressFloor != null)
-			$soci->address_floor = $addressFloor;
-		else
-			$soci->address_floor = '';
-		if ($addressFloor != null)
-			$soci->address_door = $addressDoor;
-		else
-			$soci->address_door = '';
+		$soci->address_floor = $addressFloor;
+		$soci->address_door = $addressDoor;		
 		$soci->postal_code = $postalCode;
 		$soci->city = $city;
 		if ($correctIban)
@@ -147,6 +180,9 @@ class SocisController extends Controller
 		}
 		$soci->account_holder = $accountHolder;
 		$soci->dni_holder = $dniHolder;
+		$soci->tipus_soci=$tSoci;
+		$soci->cuota_soci=$cuotaSoci;
+		$soci->observacions = $observacions;
 		$soci->save();
 
 		$inseredID = $soci->id;
@@ -175,8 +211,12 @@ class SocisController extends Controller
 		$soci = Soci::findOrFail($id);
 		$roads = Road::orderBy('road')->get();
 		$addresses = Address::orderBy('address')->get();
-
-		return view('socis.edit')->with('soci', $soci)->with('roads', $roads)->with('addresses', $addresses);
+		$tipusSocis = TipusSoci::all();
+		return view('socis.edit')
+		->with('soci', $soci)
+		->with('roads', $roads)
+		->with('addresses', $addresses)
+		->with('tipusSocis', $tipusSocis);
 	}
 
 	public function update(Request $request)
@@ -185,15 +225,7 @@ class SocisController extends Controller
 		$validator = Validator::make($request->all(), [
 			'name' => 'required',
 			'surname' => 'required',
-			'secondSurname' => 'required',
-			'dni' => 'required',
-			'phone' => 'required',
-			'birthDate' => 'required',
-			'sex' => 'required',
-			'address' => 'required',
-			'addressNum' => 'required',
-			'postalCode' => 'required',
-			'city' => 'required',
+			'secondSurname' => 'required'
 		]);
 		if ($validator->fails()) {
 			return Redirect::back()->withErrors($validator)
@@ -203,8 +235,13 @@ class SocisController extends Controller
 		$name = $request->input('name');
 		$surname = $request->input('surname');
 		$secondSurname = $request->input('secondSurname');
+
 		$dni = $request->input('dni');
+		if($dni==null)
+			$dni="";
 		$phone = $request->input('phone');
+		if($phone==null)
+			$phone="";
 		$mobile = $request->input('mobile');
 		if ($mobile == null)
 			$mobile = "";
@@ -212,15 +249,31 @@ class SocisController extends Controller
 		if($email==null)
 			$email = "";
 		$birthDate = $request->input('birthDate');
+		if($birthDate==null)
+			$birthDate='1900-01-01';
 		$sex = $request->input('sex');
 
 		$road = $request->input('road');
+		if($road==null)
+			$road="";
 		$address = $request->input('address');
+		if($address==null)
+			$address="";
 		$addressNum = $request->input('addressNum');
+		if($addressNum==null)
+			$addressNum="";
 		$addressFloor = $request->input('addressFloor');
+		if($addressFloor==null)
+			$addressFloor="";
 		$addressDoor = $request->input('addressDoor');
+		if($addressDoor==null)
+			$addressDoor="";
 		$city = $request->input('city');
+		if($city==null)
+			$city="";
 		$postalCode = $request->input('postalCode');
+		if($postalCode==null)
+			$postalCode="";
 		$iban = $request->input('iban');
 		$correctIban = $request->input('correctIban');
 		if($iban==null)
@@ -229,11 +282,21 @@ class SocisController extends Controller
 			$correctIban = true;
 		}
 		$accountHolder = $request->input('accountHolder');
-		$dniHolder = $request->input('dniHolder');
-		$sociProtector = $request->input('sociProtector');
+		$dniHolder = $request->input('dniHolder');		
 		$sociImg = $request->input('imgName');		
 		$imgChanged = $request->input('imgChanged');
 		$prevImgName = $request->input('prevImgName');
+
+		//Cuota Soci
+		$tipus = $request->input('tipusSoci');
+		$tipusSoci = TipusSoci::where('tipus_soci',$tipus)->get();
+		$tSoci = $tipusSoci[0]->tipus_soci;
+		$cuotaSoci = $tipusSoci[0]->cuota_soci;
+		if($tSoci=='Protector')
+		{
+			$cuotaSoci = $request->input('cuotaSoci');
+		}
+		$observacions = $request->input('observacions');
 
 		$soci_id = $request->id;
 		$soci = Soci::findOrFail($soci_id);
@@ -259,30 +322,29 @@ class SocisController extends Controller
 			}
 		}
 		$soci->email = $email;
-
-		$soci->soci_protector = $sociProtector;
-
 		$soci->road = $road;
 		$soci->address = $address;
 		$soci->address_num = $addressNum;
-		if ($addressFloor != null)
-			$soci->address_floor = $addressFloor;
-		else
-			$soci->address_floor = '';
-		if ($addressFloor != null)
-			$soci->address_door = $addressDoor;
-		else
-			$soci->address_door = '';
+		$soci->address_floor = $addressFloor;		
+		$soci->address_door = $addressDoor;		
 		$soci->postal_code = $postalCode;
 		$soci->city = $city;
+		$soci->tipus_soci=$tSoci;
+		$soci->cuota_soci=$cuotaSoci;
+		$soci->observacions = $observacions;
+
 		if ($correctIban)
 			$soci->iban = $iban;
 		if ($accountHolder == null) {
 			$accountHolder = $name . ' ' . $surname . ' ' . $secondSurname;
 			$dniHolder = $dni;
 		}
+		if($dniHolder==null)
+			$dniHolder = "";
 		$soci->account_holder = $accountHolder;
 		$soci->dni_holder = $dniHolder;
+
+		
 		$soci->save();
 		Address::firstOrCreate(['address' => $address]);
 

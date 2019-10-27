@@ -6,41 +6,7 @@
 @section('css')
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/croppie/2.6.2/croppie.min.css">
 <style>
-    label.cabinet {
-        display: block;
-        cursor: pointer;
-    }
-
-    label.cabinet input.file {
-        position: relative;
-        height: 100%;
-        width: auto;
-        opacity: 0;
-        -moz-opacity: 0;
-        filter: progid:DXImageTransform.Microsoft.Alpha(opacity=0);
-        margin-top: -30px;
-        display: none;
-    }
-
-    #upload-demo {
-        width: 250px;
-        height: 250px;
-        padding-bottom: 25px;
-    }
-
-    figure figcaption {
-        position: absolute;
-        bottom: 18px;
-        color: #fff;
-        padding-left: 5px;
-        padding-bottom: 5px;
-        text-shadow: 0 0 10px #000;
-        left: 20px;
-    }
-
-    .error-message {
-        color: #bd2417;
-    }
+    
 </style>
 @stop
 
@@ -55,22 +21,25 @@
         <div style="padding:30px ">
             <form action="{{route('socis.store') }}" method="post">
                 {{ csrf_field() }}
-                <div class="row ">
-                    <div class="col-12">
+                <div class="row">
+                    <div class="col-12 dades">
                         <div class="row">
                             <div class="col-4">
-                                Num soci:
+                                <span class="field">Num soci:</span>
                             </div>
                             <div class="col-4">
-                                Data Alta: {{ date('d-m-Y') }}
+                                <span class="field">Data Alta:</span>
+                                {{ date('d-m-Y') }}
                             </div>
                             <div class="col-4">
-                                Data Baixa:
+                                <span class="field">Data Baixa:</span>
                             </div>
                         </div>
                     </div>
-                    <div class="col-12">
-                        Dades Personals
+                </div>
+                <div class="row">
+                    <div class="col-12 dades-personals">
+                        <h4>Dades Personals</h4>
                         <div class="row">
                             <div class="col-10">
                                 <div class="form-row">
@@ -135,27 +104,30 @@
                                             value="{{ old('email')}}" />                                        
                                     </div>
                                     <div class="form-group col-4">
-                                        <label for="mobile">Teléfon móvil:</label>
-                                        <input type="text" name="mobile" id="mobile" class="form-control" tabindex="8"
+                                        <label for="mobile">Telèfon mòbil:</label>
+                                        <input type="text" name="phone" id="mobile" class="form-control" tabindex="8"
                                             value="{{ old('mobile')}}" />                                        
                                     </div>
                                     <div class="form-group col-4">
-                                        <label for="phone">Teléfon fixe:</label>
+                                        <label for="phone">Telèfon alternatiu:</label>
                                         <input type="text" name="phone" id="phone" class="form-control" tabindex="9"
                                             value="{{ old('phone')}}" />
                                     </div>
                                 </div>
                                 <div class="form-row">
-                                    <div class="form-group col-4">
-                                        <label for="sociProtector">Soci protector:</label>
-                                        <select id="sociProtector" name="sociProtector" class="form-control"
-                                            tabindex="10">
-                                            <option value="0" @if (old('sociProtector')=="0" ||
-                                                old('sociProtector')==null) {{ 'selected' }} @endif>NO</option>
-                                            <option value="1" @if (old('sociProtector')=="1" ) {{ 'selected' }} @endif>
-                                                SI</option>
-                                        </select>
-                                    </div>
+                                        <div class="form-group col-4">
+                                                <label for="tipusSoci">Tipus de Soci:</label>
+                                                <select id="tipusSoci" name="tipusSoci" class="form-control" tabindex="10">
+                                                    @foreach($tipusSocis as $tSoci)
+                                                    <option value="{{$tSoci->tipus_soci}}" @if(old('tipusSoci')==$tSoci->tipus_soci)
+                                                            selected @endif >{{$tSoci->tipus_soci}} ({{$tSoci->cuota_soci}}€)</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                            <div class="form-group col-4 cuota_soci">
+                                                <label for="cuotaSoci">Cuota Soci:</label>
+                                                <input id="cuotaSoci" name="cuotaSoci" class="form-control" tabindex="11" value="{{old("cuotaSoci"),0}}" />
+                                            </div>
                                 </div>
                             </div>
                             <div class="col-2">
@@ -180,8 +152,16 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-12">
-                        Adreça
+                </div>
+                <div class="row">
+                    <div class="col-12 dades-observacions">
+                        <h4>observacions</h4>
+                        <textarea id="observacions" name="observacions">{{old("observacions")}}</textarea>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 dades-adresa">
+                        <h4>Adreça</h4>
                         <div class="row">
                             <div class="col-12">
                                 <div class="form-row">
@@ -210,7 +190,7 @@
                                     </div>
                                     <div class="form-group col-1">
                                         <label for="addressNum">Número*:</label>
-                                        <input type="number" name="addressNum" id="addressNum" class="form-control"
+                                        <input type="text" name="addressNum" id="addressNum" class="form-control"
                                             tabindex="13" value="{{old("addressNum")}}" />
                                         @if($errors->has('addressNum'))
                                         <span class="error-message">Has d'indicar un número de porta</span>
@@ -218,7 +198,7 @@
                                     </div>
                                     <div class="form-group col-1">
                                         <label for="addressFloor">Pis:</label>
-                                        <input type="number" name="addressFloor" id="addressFloor" class="form-control"
+                                        <input type="text" name="addressFloor" id="addressFloor" class="form-control"
                                             tabindex="14" value="{{old("addressFloor")}}"/>
                                     </div>
                                     <div class="form-group col-1">
@@ -247,19 +227,22 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-12">
-                        Dades Bancaries
+                </div>
+                <div class="row">
+                    <div class="col-12 dades-banc">
+                        <h4>Dades Bancaries</h4>
                         <div class="row">
                             <div class="col-12">
                                 <div class="form-row">
                                     <div class="form-group col-4">
-                                        <label for="accountHolder">Nom complert del Titular (Si es diferent del
-                                            Soci):</label>
+                                        <label for="accountHolder">Nom complert del Titular <i>(Si es diferent del
+                                                Soci)</i>:</label>
                                         <input type="text" name="accountHolder" id="accountHolder" class="form-control"
                                             tabindex="18" value="{{old('accountHolder')}}"/>
                                     </div>
                                     <div class="form-group col-4">
-                                        <label for="dniHolder">Dni del Titular (Si es diferent del Soci):</label>
+                                        <label for="dniHolder">Dni del Titular <i>(Si es diferent del
+                                                Soci)</i>:</label>
                                         <input type="text" name="dniHolder" id="dniHolder" class="form-control"
                                             tabindex="19" value="{{old('dniHolder')}}"/>
                                     </div>
@@ -389,6 +372,30 @@
             $("#correctIban").val(false);
         }
 
+    });
+    
+    var optionSelected = $("option:selected", $("#tipusSoci"));
+    if(optionSelected[0].value=='Protector')
+        {
+            $(".cuota_soci").show();
+        }
+        else
+        {
+            $(".cuota_soci").hide();
+        }
+    
+
+    $("#tipusSoci").on('change',function(){
+        var optionSelected = $("option:selected", this);
+        var valueSelected = this.value;
+        if(optionSelected[0].text=='Protector')
+        {
+            $(".cuota_soci").show();
+        }
+        else
+        {
+            $(".cuota_soci").hide();
+        }
     });
 });
 

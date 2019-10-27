@@ -1,0 +1,50 @@
+@import "vars";
+
+#main {
+    .socis {
+        label {
+            &.cabinet {
+                display: block;
+                cursor: pointer;
+                input{
+                    .file {
+                        position: relative;
+                        height: 100%;
+                        width: auto;
+                        opacity: 0;
+                        -moz-opacity: 0;
+                        filter: progid:DXImageTransform.Microsoft.Alpha(opacity=0);
+                        margin-top: -30px;
+                        display: none;
+                    }
+                }
+                figure{ figcaption {
+                    position: absolute;
+                    bottom: 50px;
+                    color: #fff;
+                    padding-left: 5px;
+                    padding-bottom: 5px;
+                    text-shadow: 0 0 10px #000;
+                    left: 20px;
+                }
+                }
+            }
+        }
+
+        .field{
+            clear:both;
+            display: block;
+        }
+
+        .dades,.dades-personals,.dades-observacions,.dades-adresa,.dades-banc{
+            margin-bottom:10px;
+        }
+        
+
+        #upload-demo {
+            width: 250px;
+            height: 250px;
+            padding-bottom: 25px;
+        }
+    }
+}

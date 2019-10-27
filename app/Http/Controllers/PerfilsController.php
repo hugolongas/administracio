@@ -49,12 +49,7 @@ class PerfilsController extends Controller
 		$addressDoor = $request->input('addressDoor');
 		$city = $request->input('city');
 		$postalCode = $request->input('postalCode');
-		$iban = $request->input('iban');
-		$accountHolder = $request->input('accountHolder');
-		$dniHolder = $request->input('dniHolder');
-		$sociProtector = $request->input('sociProtector');
 		$sociImg = $request->input('imgName');
-		$correctIban = $request->input('correctIban');
 		$imgChanged = $request->input('imgChanged');
 		$prevImgName = $request->input('prevImgName');
 
@@ -80,9 +75,7 @@ class PerfilsController extends Controller
 				}
 			}
 		}
-		$soci->email = $email;
-		
-		$soci->soci_protector = $sociProtector;
+		$soci->email = $email;	
 
 		$soci->road = $road;
 		$soci->address = $address;
@@ -96,15 +89,7 @@ class PerfilsController extends Controller
 		else
 			$soci->address_door = '';
 		$soci->postal_code = $postalCode;
-		$soci->city = $city;
-		if ($correctIban)
-			$soci->iban = $iban;
-		if ($accountHolder == null) {
-			$accountHolder = $name . ' ' . $surname . ' ' . $secondSurname;
-			$dniHolder = $dni;
-		}
-		$soci->account_holder = $accountHolder;
-		$soci->dni_holder = $dniHolder;
+		$soci->city = $city;		
 		$soci->save();
 		Address::firstOrCreate(['address' => $address]);
 
