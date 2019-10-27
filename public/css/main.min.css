@@ -130,8 +130,6 @@ body #main.sidebar-toggled {
   body #main.sidebar-toggled {
     margin-left: 60px;
   }
-}
-@media only screen and (min-width: 1024px) and only screen and (min-width: 1024px) {
   body #main.sidebar-toggled.fixed-menu .content .options-menu {
     margin-left: 137px;
   }
@@ -171,7 +169,7 @@ body #main .aside.toggled .aside-item {
 body #main .content {
   float: left;
   width: 100%;
-  min-width: 567px;
+  min-width: 270px;
   padding: 0px 20px 0px 20px;
   background-color: #f8f8f8;
   min-height: 70vh;
@@ -179,6 +177,9 @@ body #main .content {
 body #main .content .options-menu {
   margin-top: 20px;
   margin-bottom: 20px;
+}
+body #main .content .item-img {
+  max-width: 100px !Important;
 }
 body #main .error-message {
   color: #bd2417;

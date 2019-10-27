@@ -76,9 +76,10 @@ body {
         }
 
         &.fixed-menu {
-            .aside{
-                margin-top:-40px !important;
+            .aside {
+                margin-top: -40px !important;
             }
+
             .content {
                 .options-menu {
                     position: relative;
@@ -107,9 +108,7 @@ body {
                 &.fixed-menu {
                     .content {
                         .options-menu {
-                            @media @media-laptop {
-                                margin-left: 137px;
-                            }
+                            margin-left: 137px;
                         }
                     }
                 }
@@ -153,7 +152,7 @@ body {
         .content {
             float: left;
             width: 100%;
-            min-width: 567px;
+            min-width: 270px;
             padding: 0px 20px 0px 20px;
             background-color: @color-content;
             min-height: 70vh;
@@ -161,6 +160,10 @@ body {
             .options-menu {
                 margin-top: 20px;
                 margin-bottom: 20px;
+            }
+
+            .item-img {
+                max-width: 100px !Important;
             }
         }
 

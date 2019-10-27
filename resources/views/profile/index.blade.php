@@ -24,70 +24,69 @@
 <div class="row">
     <div class="col-12 dades-personals">
         <h4>Dades Personals</h4>
-            <div class="row">
-                <div class="col-10">
-                    <div class="row">
-                        <div class="col-4">
-                            <span class="field">Nom:</span>
-                            {{$soci->name}}
-                        </div>
-                        <div class="col-4">
-                            <span class="field">Cognom:</span>
-                            {{$soci->surname}}
-                        </div>
-                        <div class="col-4">
-                            <span class="field">Segon Cognom:</span>
-                            {{$soci->second_surname}}
-                        </div>
+        <div class="row">
+            <div class="col-10">
+                <div class="row">
+                    <div class="col-4">
+                        <span class="field">Nom:</span>
+                        {{$soci->name}}
                     </div>
-                    <div class="row">
-                        <div class="col-4">
-                            <span class="field">DNI:</span>
-                            {{$soci->dni}}
-                        </div>
-                        <div class="col-4">
-                            <span class="field">Data de naixement:</span>
-                            {{$soci->birth_date}}
-                        </div>
-                        <div class="col-4">
-                            <span class="field">Sexe:</span>
-                            {{$soci->sex}}
-                        </div>
+                    <div class="col-4">
+                        <span class="field">Cognom:</span>
+                        {{$soci->surname}}
                     </div>
-                    <div class="row">
-                        <div class="col-4">
-                            <span class="field">E-mail:</span>
-                            {{$soci->email}}
-                        </div>
-                        <div class="col-4">
-                            <span class="field">Telèfon mòbil:</span>
-                            {{$soci->mobile}}
-                        </div>
-                        <div class="col-4">
-                            <span class="field">Telèfon alternatiu:</span>
-                            {{$soci->phone}}
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="form-group col-4">
-                            <span class="field">Tipus de Soci:</span>
-                            {{$soci->tipus_soci}}
-                        </div>
-                        <div class="form-group col-4 ">
-                            <span class="field">Cuota Soci:</span>
-                            {{$soci->cuota_soci}}
-                        </div> 
+                    <div class="col-4">
+                        <span class="field">Segon Cognom:</span>
+                        {{$soci->second_surname}}
                     </div>
                 </div>
-                <div class="col-2">                    
-                    <div class="row">
-                        <div class="col-xs-12">                                
-                            <img src="{{asset('storage/socis').'/'.$soci->soci_img}}" class="img-fluid" id="soci_img" />
-                        </div>
+                <div class="row">
+                    <div class="col-4">
+                        <span class="field">DNI:</span>
+                        {{$soci->dni}}
+                    </div>
+                    <div class="col-4">
+                        <span class="field">Data de naixement:</span>
+                        {{$soci->birth_date}}
+                    </div>
+                    <div class="col-4">
+                        <span class="field">Sexe:</span>
+                        {{$soci->sex}}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-4">
+                        <span class="field">E-mail:</span>
+                        {{$soci->email}}
+                    </div>
+                    <div class="col-4">
+                        <span class="field">Telèfon mòbil:</span>
+                        {{$soci->mobile}}
+                    </div>
+                    <div class="col-4">
+                        <span class="field">Telèfon alternatiu:</span>
+                        {{$soci->phone}}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-4">
+                        <span class="field">Tipus de Soci:</span>
+                        {{$soci->tipus_soci}}
+                    </div>
+                    <div class="form-group col-4 ">
+                        <span class="field">Cuota Soci:</span>
+                        {{$soci->cuota_soci}}
+                    </div> 
+                </div>
+            </div>
+            <div class="col-2">                    
+                <div class="row">
+                    <div class="col-xs-12">                                
+                        <img src="{{asset('storage/socis').'/'.$soci->soci_img}}" class="img-fluid" id="soci_img" />
                     </div>
                 </div>
             </div>
-        </div>
+        </div>        
     </div>
 </div>
 <div class="row">
