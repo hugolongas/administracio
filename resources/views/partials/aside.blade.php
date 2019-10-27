@@ -5,7 +5,7 @@
             <div class="aside-item">General</div>
         </a>
     </li>
-    @if(Auth::user()->checkRoles(array("colaborador", "junta")))
+    @if(Auth::user()->checkRoles(array("soci","colaborador","junta")))
     <li class="nav-item {{ Request::is('activitats') && ! Request::is('activitats')? 'active' : ''}}">
         <a class="nav-link" href="{{url('activitats')}}">
             <i class="fas fa-file-invoice"></i>

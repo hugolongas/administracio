@@ -1,4 +1,4 @@
 @extends('layouts.master')
 @section('content')
-Basic Home
+Promotor Home
 @endsection
