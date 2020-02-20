@@ -23,7 +23,9 @@ class SociExport implements FromCollection, WithHeadings
             'email',
             'data_alta_soci',
             'data_baixa_soci',
-            'soci_protector',
+            'tipus_soci',
+            'cuota_soci',
+            'observacions',
             'via',
             'carrer',
             'num_carrer',
@@ -41,7 +43,8 @@ class SociExport implements FromCollection, WithHeadings
      */
     public function collection()
     {
-        $socis = Soci::select('member_number',
+        $socis = Soci::select(
+        'member_number',
         'name',
         'surname',
         'second_surname',
@@ -53,7 +56,9 @@ class SociExport implements FromCollection, WithHeadings
         'email',
         'register_date',
         'unregister_date',
-        'soci_protector',
+        'tipus_soci',
+        'cuota_soci',
+        'observacions',
         'road',
         'address',
         'address_num',
@@ -63,7 +68,8 @@ class SociExport implements FromCollection, WithHeadings
         'city',
         'iban',
         'account_holder',
-        'dni_holder')->get();
+        'dni_holder'
+        )->get();
         return $socis;
     }
 }

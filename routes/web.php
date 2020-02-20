@@ -87,13 +87,15 @@ Route::group(['middleware' => ['auth']], function () {
 		Route::put('seccions/update/{id}', ['uses' => 'SectionsController@update', 'as' => 'sections.update']);
 		
 		//Activitats
-		/*Route::get('activitats', ['uses' => 'ActivitatsController@index', 'as' => 'activitats']);
+		Route::get('activitats', ['uses' => 'ActivitatsController@index', 'as' => 'activitats']);
 		Route::get('activitats/getData', ['uses' => 'ActivitatsController@getData', 'as' => 'activitats.data']);
 		Route::get('activitats/detall/{id}', ['uses' => 'ActivitatsController@show', 'as' => 'activitats.show']);
 		Route::get('activitats/crear', ['uses' => 'ActivitatsController@create', 'as' => 'activitats.create']);
 		Route::post('activitats/store', ['uses' => 'ActivitatsController@store', 'as' => 'activitats.store']);
 		Route::get('activitats/editar/{id}', ['uses' => 'ActivitatsController@edit', 'as' => 'activitats.edit']);
-		Route::put('activitats/update/{id}', ['uses' => 'ActivitatsController@update', 'as' => 'activitats.update']);*/
+		Route::put('activitats/update/{id}', ['uses' => 'ActivitatsController@update', 'as' => 'activitats.update']);
+
+		Route::put('activitats/control_entrada/{id}', ['uses' => 'ActivitatsController@checkEntrance', 'as' => 'activitats.entrada']);
 	});
 
 

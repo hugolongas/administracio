@@ -26,7 +26,7 @@
         <div>
             <h2>Editar</h2>
             <div style="padding:30px">
-                <form action="{{route('profile.update',$soci->id) }}" method="post">
+                <form id="editForm" action="{{route('profile.update',$soci->id) }}" method="post">
                     {{ method_field('PUT') }}
                     {{ csrf_field() }}
                     <div class="row">
@@ -72,8 +72,8 @@
                                     </div>
                                     <div class="form-row">
                                         <div class="form-group col-4">
-                                            <label for="dni">DNI:</label>
-                                            <input type="text" name="dni" id="dni" class="form-control" tabindex="4" value="{{$soci->dni}}" />
+                                            <span class="field">DNI:</span>
+                                            {{$soci->dni}}      
                                         </div>
                                         <div class="form-group col-4">
                                             <label for="birthDate">Data de naixement:</label>
@@ -311,6 +311,17 @@ $('#cropImageBtn').on('click', function (ev) {
             }
         });
     });
+});
+$(document).ready(function(){
+    $(window).bind('keydown', function(event) {
+    if (event.ctrlKey || event.metaKey) {
+        switch (String.fromCharCode(event.which).toLowerCase()) {
+        case 's':
+            event.preventDefault();            
+            $("#editForm").submit();
+            break;
+    }
+});
 });
 </script>
 @stop

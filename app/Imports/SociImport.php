@@ -6,6 +6,8 @@ use App\Soci;
 use App\Address;
 use App\Road;
 use App\User;
+use App\TipusSoci;
+use App\Section;
 use Illuminate\Support\Collection;
 use Maatwebsite\Excel\Concerns\ToCollection;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
@@ -25,8 +27,6 @@ class SociImport implements ToCollection, WithHeadingRow
             if ($member_number == null)
                 $member_number = Soci::orderBy('id', 'desc')->first()->member_number + 1;
             $name = $row['nom'];
-            if ($name == null)
-                $name = "";
             $surname = $row['cognom'];
             if ($surname == null)
                 $surname = "";
@@ -53,9 +53,18 @@ class SociImport implements ToCollection, WithHeadingRow
             $unregister_date = DateTime::createFromFormat('d/m/Y', $row['data_baixa_soci']);
             if (!$unregister_date)
                 $unregister_date = null;
-            $soci_protector = 0;
-            if (strtolower($row['soci_protector']) == 'si')
-                $soci_protector = 1;
+
+
+            $tipus_soci = $row['tipus_soci'];
+            $tSoci = TipusSoci::where('tipus_soci',$tipus_soci)->first();
+            $cuota_soci = $tSoci->cuota_soci;
+            if (strtolower($tipus_soci) == 'protector')
+                $cuota_soci = $row['cuota_soci'];
+                
+            $observacions = $row['observacions'];
+            if ($observacions == null)
+                $observacions = "";
+
             $road = $row['via'];
             if ($road == null)
                 $road = "";
@@ -101,8 +110,7 @@ class SociImport implements ToCollection, WithHeadingRow
                 $soci->soci_img = 'default.png';
                 $soci->email = $email;
                 $soci->register_date = $register_date;
-                $soci->unregister_date = $unregister_date;
-                $soci->soci_protector = $soci_protector;
+                $soci->unregister_date = $unregister_date;                
                 $soci->road = $road;
                 $soci->address = $address;
                 $soci->address_num = $address_num;
@@ -113,6 +121,9 @@ class SociImport implements ToCollection, WithHeadingRow
                 $soci->iban = $iban;
                 $soci->account_holder = $account_holder;
                 $soci->dni_holder = $dni_holder;
+                $soci->tipus_soci = $tipus_soci;
+                $soci->cuota_soci = $cuota_soci;
+                $soci->observacions = $observacions;
                 $soci->save();
                 $insertedId = $soci->id;
 
@@ -128,7 +139,7 @@ class SociImport implements ToCollection, WithHeadingRow
                     $user->email = $email;
                     $user->password = bcrypt(str_random(8));
                     $user->save();
-                    $section = Sections::findOrFail(2);			
+                    $section = Section::findOrFail(2);			
                     $section->users()->attach($user);
                 }
             }

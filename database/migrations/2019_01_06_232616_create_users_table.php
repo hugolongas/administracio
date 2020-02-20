@@ -18,7 +18,7 @@ class CreateUsersTable extends Migration
             $table->integer('soci_id')->nullable()->unsigned();
             $table->string('name');
             $table->string('username')->unique();
-            $table->string('email')->unique();
+            $table->string('email');
             $table->string('password');
             $table->boolean('active')->default(1);
             $table->rememberToken();

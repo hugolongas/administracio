@@ -8,7 +8,7 @@ use App\Road;
 use App\Address;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
-
+use App\User;
 use Storage;
 use Notification;
 use Validator;
@@ -35,29 +35,51 @@ class PerfilsController extends Controller
 		$name = $request->input('name');
 		$surname = $request->input('surname');
 		$secondSurname = $request->input('secondSurname');
-		$dni = $request->input('dni');
+		
 		$phone = $request->input('phone');
+		if($phone==null)
+			$phone="";
 		$mobile = $request->input('mobile');
+		if ($mobile == null)
+			$mobile = "";
+
 		$email = $request->input('email');
+		if($email==null)
+			$email = "";
 		$birthDate = $request->input('birthDate');
+		if($birthDate==null)
+			$birthDate='1900-01-01';
 		$sex = $request->input('sex');
 
 		$road = $request->input('road');
+		if($road==null)
+			$road="";
 		$address = $request->input('address');
+		if($address==null)
+			$address="";
 		$addressNum = $request->input('addressNum');
+		if($addressNum==null)
+			$addressNum="";
 		$addressFloor = $request->input('addressFloor');
+		if($addressFloor==null)
+			$addressFloor="";
 		$addressDoor = $request->input('addressDoor');
+		if($addressDoor==null)
+			$addressDoor="";
 		$city = $request->input('city');
+		if($city==null)
+			$city="";
 		$postalCode = $request->input('postalCode');
+		if($postalCode==null)
+			$postalCode="";
 		$sociImg = $request->input('imgName');
 		$imgChanged = $request->input('imgChanged');
-		$prevImgName = $request->input('prevImgName');
+		$prevImgName = $request->input('prevImgName');		
 
 		$soci = Soci::findOrFail($request->id);
 		$soci->name = $name;
 		$soci->surname = $surname;
-		$soci->second_surname = $secondSurname;
-		$soci->dni = $dni;
+		$soci->second_surname = $secondSurname;		
 		$soci->phone = $phone;
 		$soci->mobile = $mobile;
 		$soci->birth_date = $birthDate;
@@ -94,9 +116,17 @@ class PerfilsController extends Controller
 		Address::firstOrCreate(['address' => $address]);
 
 		Road::firstOrCreate(['road' => $road]);
-		
-		Notification::success('Soci actualitzat Correctament');
-		return redirect()->route('socis');
+		if(User::where('username',$soci->dni)->get()!=null)
+		{
+			if ($email != "") {
+				$user = User::where('username',$soci->dni)->first();
+				$user->name = $name . ' ' . $surname . ' ' . $secondSurname;				
+				$user->email = $email;
+				$user->save();
+			}
+		}
+		Notification::success('Perfil actualitzat Correctament');
+		return redirect()->route('profile');
   }
   
   public function uploadImage(Request $request)

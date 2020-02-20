@@ -163,8 +163,8 @@
                     </div>
                     <div class="row">
                         <div class="col-12 dades-observacions">
-                            <h4>Observacions</h4>
-                            <textarea id="observacions" name="observacions">{{old('observacions'),$soci->observacions}}</textarea>
+                            <h4>Observacions</h4>                            
+                            <textarea id="observacions" name="observacions">{!!old('observacions'),$soci->observacions!!}</textarea>
                         </div>
                     </div>
                     <div class="row">

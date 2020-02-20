@@ -199,7 +199,7 @@
 				}
 			},			
 			{
-				targets: [29],
+				targets: [28],
 				render: function(data){
 					var unregister_date = data['unregister_date'];
 					var id = data['id'];

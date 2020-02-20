@@ -143,6 +143,8 @@ class SocisController extends Controller
 			$cuotaSoci = $request->input('cuotaSoci');
 		}
 		$observacions = $request->input('observacions');
+		if($observacions==null)
+			$observacions = "";
 
 		$soci = new Soci;
 		$soci->member_number = Soci::orderBy('id', 'desc')->first()->member_number + 1;
@@ -189,20 +191,31 @@ class SocisController extends Controller
 
 		Address::firstOrCreate(['address' => $address]);
 
-		Road::firstOrCreate(['road' => $road]);
-		if ($email != "" && $dni != "") {
-			$user = new User;
-			$user->soci_id = $inseredID;
-			$user->name = $name . ' ' . $surname . ' ' . $secondSurname;
-			$user->username = $dni;
-			$user->email = $email;
-			$user->password = bcrypt(str_random(8));
-			$user->save();
-
-			$section = Section::findOrFail(2);
-			$section->users()->attach($user);
+		Road::firstOrCreate(['road' => $road]);		
+		if(User::where('username',$dni)->first()==null){
+			if ($email != "" && $dni != "") {
+				$user = new User;
+				$user->soci_id = $inseredID;
+				$user->name = $name . ' ' . $surname . ' ' . $secondSurname;
+				$user->username = $dni;
+				$user->email = $email;
+				$user->password = bcrypt(str_random(8));
+				$user->save();
+	
+				$section = Section::findOrFail(2);
+				$section->users()->attach($user);
+				Notification::success('Soci Creat Correctament amb usuari');
+			}
+			else
+			{
+				Notification::success('Soci Creat Correctament sense usuari ja que no te  dni o e-mail');
+			}
+			
+		}		
+		else{
+			Notification::success('Soci Creat Correctament sense usuari ja que ja existeix un usuari amb aquest dni');
 		}
-		Notification::success('Soci Creat Correctament');
+		
 		return redirect()->route('socis.show', $inseredID);
 	}
 
@@ -297,6 +310,8 @@ class SocisController extends Controller
 			$cuotaSoci = $request->input('cuotaSoci');
 		}
 		$observacions = $request->input('observacions');
+		if($observacions==null)
+			$observacions = "";
 
 		$soci_id = $request->id;
 		$soci = Soci::findOrFail($soci_id);
@@ -348,14 +363,17 @@ class SocisController extends Controller
 		$soci->save();
 		Address::firstOrCreate(['address' => $address]);
 
-		Road::firstOrCreate(['road' => $road]);
-		if($soci->user()!=null)
+		Road::firstOrCreate(['road' => $road]);				
+		if(User::where('username',$dni)->first()!=null)
 		{
-			$user = $soci->user();
+
 			if ($email != "" && $dni != "") {
-				
+				$user = User::where('username',$dni)->first();
+				$user->name = $name . ' ' . $surname . ' ' . $secondSurname;				
+				$user->email = $email;
 				$user->save();
 			}
+			Notification::success('Soci actualitzat Correctament');
 		}
 		else{
 			if ($email != "" && $dni != "") {
@@ -368,10 +386,11 @@ class SocisController extends Controller
 				$user->save();
 				$section = Section::findOrFail(2);
 				$section->users()->attach($user);
+				Notification::success("Soci actualitzat Correctament i s'ha creat un usuari");
 			}
 		}
 
-		Notification::success('Soci actualitzat Correctament');
+		
 		return redirect()->route('socis');
 	}
 
@@ -457,5 +476,10 @@ class SocisController extends Controller
 	{
 		Notification::success('Taula de socis Exportada');
 		return Excel::download(new SociExport, 'socis.xlsx');
+	}
+
+	public function findSoci($dni)
+	{
+		$user = DB::select('call soci_by_dni($dni)');
 	}
 }

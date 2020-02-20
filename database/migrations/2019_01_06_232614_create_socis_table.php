@@ -20,8 +20,8 @@ class CreateSocisTable extends Migration
             $table->string('surname');
             $table->string('second_surname');
             $table->string('dni');
-            $table->integer('phone');
-            $table->integer('mobile');
+            $table->string('phone');
+            $table->string('mobile')->nullable();
             $table->date('birth_date');
             $table->string('sex');
             $table->string('soci_img');

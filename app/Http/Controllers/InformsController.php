@@ -29,7 +29,7 @@ class InformsController extends Controller
 
     public function llistaSocisMenorscatorze()
     {
-        $AnyMenors = date('Y')-14;
+        $AnyMenors = 14;
         $mesMenors = date('m');
         $actualDate = date('Y-m-d');
         $stringRaw = 'floor(datediff("'.$actualDate.'",birth_date)/365) as edat';
@@ -37,8 +37,7 @@ class InformsController extends Controller
         ->select('member_number','name','surname','second_surname','birth_date')
         ->selectRaw($stringRaw)
         ->whereNull('unregister_date')
-        ->whereYear('birth_date','>=',$AnyMenors)
-        ->whereMonth('birth_date','>=',$mesMenors)
+        ->whereRaw('(YEAR(now())-YEAR(birth_date))<=14')        
         ->orderBy('surname')
         ->get();
         $headings = array('nº Soci','nom','cognom','segon cognom','data naixement','edat');
