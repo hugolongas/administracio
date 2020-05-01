@@ -19,6 +19,9 @@
             <div class="card-header">Activitats</div>
             <div class="card-body">
                 <ul class="list-group list-group-flush">
+                    @foreach ($activities as $a)
+                    <li>{{$a->name}}</li>
+                    @endforeach
                 </ul>                
             </div>
         </div>
