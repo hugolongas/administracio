@@ -114,8 +114,8 @@
 				</div>
 			</div>
 			<div class="modal-footer">
-				<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-				<button type="button" id="donarBaixa" data-id="" class="btn btn-primary">Donar de baixa</button>
+				<button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Close</button>
+				<button type="button" id="donarBaixa" data-id="" class="btn btn-outline-primary">Donar de baixa</button>
 			</div>
 		</div>
 	</div>
@@ -163,7 +163,7 @@
 			{ data: 'account_holder'},
 			{ data: 'dni_holder'},			
 			{data: null},
-			{data: null, defaultContent: '<button class="btn btn-secondary" accion="eliminar">Eliminar</button>'}
+			{data: null, defaultContent: '<button class="btn btn-outline-secondary" accion="eliminar">Eliminar</button>'}
 			],
 			columnDefs: [
 			{
@@ -177,7 +177,7 @@
 					var id = data['id'];			
 					var url = '{{ route("socis.show", "id") }}';
 					url = url.replace('id', id); 		
-					return '<a class="btn btn-info" role="button" href="'+url+'"><i class="fa fa-eye"></i>Veure</a>';
+					return '<a class="btn btn-outline-info" role="button" href="'+url+'"><i class="fa fa-eye"></i>Veure</a>';
 				}
 			},
 			{
@@ -186,7 +186,7 @@
 					var id = data['id'];	
 					var url = '{{ route("socis.edit", "id") }}';
 					url = url.replace('id', id);				
-					return '<a class="btn btn-warning" role="button" href="'+url+'"><i class="fa fa-pencil-alt"></i>Editar</a>';
+					return '<a class="btn btn-outline-warning" role="button" href="'+url+'"><i class="fa fa-pencil-alt"></i>Editar</a>';
 				}
 			},
 			{
@@ -205,11 +205,11 @@
 					var id = data['id'];
 					if(unregister_date==null)
 					{
-						return '<button class="btn btn-danger" accion="baixa" data-id="'+id+'">Donar de Baixa</button>';
+						return '<button class="btn btn-outline-danger" accion="baixa" data-id="'+id+'">Donar de Baixa</button>';
 					}
 					else
 					{
-						return '<button class="btn btn-success" accion="alta">Donar d\'Alta</button>';
+						return '<button class="btn btn-outline-success" accion="alta">Donar d\'Alta</button>';
 					}
 				}
 			}

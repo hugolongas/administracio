@@ -36,7 +36,7 @@
                     </div>
                 </div>
                 <div class="form-group text-center ">
-                    <button type="submit " class="btn btn-primary " style="padding:8px 100px;margin-top:25px; ">
+                    <button type="submit " class="btn btn-outline-primary " style="padding:8px 100px;margin-top:25px; ">
                         Editar
                     </button>
                 </div>

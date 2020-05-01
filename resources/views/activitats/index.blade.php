@@ -26,8 +26,11 @@
 				<th>Veure</th>
 				<th>Editar</th>		
 				<th>Nom</th>		
-				<th>Data</th>		
-				<th>Control d'Entrades</th>
+				<th>Data</th>
+				<th>Creat per</th>
+				<th>Entrades de socis</th>
+				<th>Entrades de no socis</th>
+				<th>Estat</th>
 				<th>Eliminar</th>
 			</tr>
 		</thead>
@@ -37,9 +40,12 @@
 				<th>id</th>
 				<th>Veure</th>
 				<th>Editar</th>		
-				<th>Nom</th>
+				<th>Nom</th>		
 				<th>Data</th>
-				<th>Control d'Entrades</th>
+				<th>Creat per</th>
+				<th>Entrades de socis</th>
+				<th>Entrades de no socis</th>
+				<th>Estat</th>
 				<th>Eliminar</th>
 			</tr>
 		</tfoot>
@@ -52,7 +58,7 @@
 		datatable = $('#activities-table').DataTable({
 			processing: true,
 			serverSide: true,
-			ajax: '{{route('activitats.data')}}',
+			ajax: '{{ route("activitats") }}',
 			scrollX:true,
 			searching:true,
 			ordering:true,
@@ -60,10 +66,13 @@
 			{ data: 'id'},
 			{data: null},
 			{data: null},
-			{fata:'name'},
-			{fata:'activity_date'},
-			{data: null},
-			{data: null, defaultContent: '<button class="btn btn-secondary" accion="eliminar">Eliminar</button>'}
+			{data:'name'},
+			{data:'activity_date'},
+			{data:'created_by'},
+			{data:'socis_tickets'},
+			{data:'nosocis_tickets'},
+			{data:'status'},
+			{data: null, defaultContent: '<button class="btn btn-outline-secondary" accion="eliminar">Eliminar</button>'}
 			],
 			columnDefs: [
 			{
@@ -77,7 +86,7 @@
 					var id = data['id'];			
 					var url = '{{ route("activitats.show", "id") }}';
 					url = url.replace('id', id); 		
-					return '<a class="btn btn-info" role="button" href="'+url+'"><i class="fa fa-eye"></i>Veure</a>';
+					return '<a class="btn btn-outline-info" role="button" href="'+url+'"><i class="fa fa-eye"></i>Veure</a>';
 				}
 			},
 			{
@@ -86,18 +95,9 @@
 					var id = data['id'];	
 					var url = '{{ route("activitats.edit", "id") }}';
 					url = url.replace('id', id);				
-					return '<a class="btn btn-warning" role="button" href="'+url+'"><i class="fa fa-pencil-alt"></i>Editar</a>';
+					return '<a class="btn btn-outline-warning" role="button" href="'+url+'"><i class="fa fa-pencil-alt"></i>Editar</a>';
 				}
-			}
-			{
-				targets: [-2],
-				render: function(data){
-					var id = data['id'];	
-					var url = '{{ route("activitats.entrada", "id") }}';
-					url = url.replace('id', id);				
-					return '<a class="btn btn-warning" role="button" href="'+url+'"><i class="fa fa-pencil-alt"></i>Control d\'Entrada</a>';
-				}
-			}
+			}			
 			]
 		});	
 
@@ -120,7 +120,7 @@
 				url: url,
 				type: 'POST',
 				success: function () {
-					$('#users-table').DataTable().ajax.reload();
+					$('#activities-table').DataTable().ajax.reload();
 					var alert="<div id='custom-alert' class='alert alert-danger'>Activitat Eliminada</div>";
 					$("#content").prepend(alert);
 					setTimeout(function(){
@@ -133,60 +133,6 @@
 			}
 		}
 		});
-	});
-
-	$('#modalUnregister').on('shown.bs.modal', function () {
-		var url = '{{route("socis.unregisterMotive")}}';		
-		$.ajax({					
-			url: url,
-			type: 'GET',
-			success: function (data) {
-				if(data.length>0){
-					// Loop over the JSON array.
-					data.forEach(function (item) {
-						// Create a new <option> element.
-						var option = document.createElement('option');
-						// Set the value using the item in the JSON array.
-						option.value = item.unregister_motive;
-						// Add the <option> element to the <datalist>.
-							$("#motives").append(option);
-					});
-				}		
-			}
-		});
-	});
-
-	$("#donarBaixa").on('click',function(e){
-		var id = $(this).attr('data-id');
-		var motive = $("#unregisterMotive").val();
-		console.log(motive);
-		$.ajaxSetup({
-				headers:
-				{ 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') }
-		});			
-		var url = '{{ route("socis.unregister") }}';
-		$.ajax({					
-			url: url,
-			method: 'POST',
-			data: {
-				id: id,
-				motive: motive                     
-			},
-			success: function (resp) {					
-				alert="<div id='custom-alert' class='alert alert-success'>Soci donat de baixa</div>";
-				$("#content").prepend(alert);
-				$('#users-table').DataTable().ajax.reload();					
-				$("#modalUnregister").modal('hide');
-				setTimeout(function(){
-					$('#custom-alert').remove();
-				}, 5000);
-			}
-		});
-	});
-
-	$("#modalUnregister").on('hidden.bs.modal',function(){
-		$("#unregisterMotive").val('');
-		$("#motives").empty();
 	});
 
 </script>

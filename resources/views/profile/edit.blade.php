@@ -218,7 +218,7 @@
                             </div>
                         </div>
                         <div class="form-group text-center">
-                            <button type="submit" class="btn btn-primary" style="padding:8px 100px;margin-top:25px;">
+                            <button type="submit" class="btn btn-outline-primary" style="padding:8px 100px;margin-top:25px;">
                                 Actualitzar
                             </button>
                         </div>
@@ -240,8 +240,8 @@
                     <div id="upload-demo" class="center-block"></div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Tancar</button>
-                    <button type="button" id="cropImageBtn" class="btn btn-primary">Carregar</button>
+                    <button type="button" class="btn btn-outline-default" data-dismiss="modal">Tancar</button>
+                    <button type="button" id="cropImageBtn" class="btn btn-outline-primary">Carregar</button>
                 </div>
             </div>
         </div>
