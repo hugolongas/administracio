@@ -1,5 +1,5 @@
 body {
-    font-family: Raleway,sans-serif;
+    font-family: Raleway, sans-serif;
     font-size: 14px;
     line-height: 1.6;
     color: #636b6f;
@@ -64,18 +64,15 @@ body {
     font-weight: bold;
 }
 
-#login .container .card-body .form-horizontal .btn{
-    font-size:12px;
+#login .container .card-body .form-horizontal .btn {
+    font-size: 15px;
 }
 
-
 @media only screen and (min-width:768px) {
-
     #login .container .card-body .info {
         padding-left: 20px;
         font-size: 14px;
     }
-
     #login .container .card-body .no-recived {
         padding-left: 20px;
         font-size: 14px;

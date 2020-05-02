@@ -42,7 +42,7 @@
                 <div class="dropdown-item">
                     <form action="{{ url('/logout') }}" method="POST" >
                         {{ csrf_field() }}
-                        <button type="submit" class="btn btn-outline-link nav-link">
+                        <button type="submit" class="btn btn-link nav-link">
                             Tancar sessió
                         </button>
                     </form>
