@@ -7,9 +7,10 @@
             <div class="card-header">Socis</div>
             <div class="card-body">
                 <ul class="list-group list-group-flush">
-                    <li class="list-group-item"><div class="socis-total">Socis totals:{{$socis}}</div></li>
-                    <li class="list-group-item"><div class="socis-actius">Socis actius:{{$socisActius}}</div></li>
-                    <li class="list-group-item"><div class="socis-inactius">Socis baixa:{{$socisInactiu}}</div></li>
+                    <li class="list-group-item"><div class="socis-total">Socis Totals:{{$socis}}</div></li>                    
+                    <li class="list-group-item"><div class="socis-actius">Socis Actius:{{$socisActius}}</div></li>
+                    <li class="list-group-item"><div class="socis-cuota">Socis Cuota:{{$socisPaga}}</div></li>
+                    <li class="list-group-item"><div class="socis-inactius">Socis Baixa:{{$socisInactiu}}</div></li>
                 </ul>                
             </div>
         </div>

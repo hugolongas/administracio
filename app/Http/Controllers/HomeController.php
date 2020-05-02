@@ -4,10 +4,12 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use App\Soci;
 
 class HomeController extends Controller
 {
+
     /**
      * Create a new controller instance.
      *
@@ -26,63 +28,82 @@ class HomeController extends Controller
     public function getHome()
     {
         if (Auth::check()) {
-
-            if(Auth::user()->checkRoles("junta"))
-            {
-                return $this->getJunta();
-            }
-            else if(Auth::user()->checkRoles("colaborador"))
-            {
-                return $this->getColaborador();
-            }
-            else if(Auth::user()->checkRoles("promotor"))
-            {
-                return $this->getPromotor();
-            }
-            else if(Auth::user()->checkRoles("soci")){
-                return $this->getSoci();
-            }
-
+            if (Auth::user()->checkRoles("junta"))
+                return $this->_getJunta();
+            if (Auth::user()->checkRoles("colaborador"))
+                return $this->_getColaborador();
+            if (Auth::user()->checkRoles("soci"))
+                return $this->_getSoci();
 
             return view('home');
-        }
-        else
-        {
+        } else {
             return view('login');
         }
+    }
+
+    private function _getSoci()
+    {
+        $activities = $this->_getActivities();
+        $actes = $this->_getActes();
+        return view('sociHome')
+        ->with('actes', $actes)
+            ->with('activities', $activities);
+    }
+
+    private function _getJunta()
+    {
+        $isSoci = false;
+        if (Auth::user()->soci != null)
+            $isSoci = true;
+        $activities = $this->_getActivities();
+        $socis = Soci::all();
+        $socisCount = $socis->count();
+        $socisActiusCount = $socis->where('unregister_date', null)->count();        
+        $socisInactiusCount = $socis->where('unregister_date', '<>', null)->count();
+        $socisPaga = $this->_getSocisCuota();
+        $socisPagaCount = $socisPaga->count();
         
+
+        return view('juntaHome')
+            ->with('socis', $socisCount)
+            ->with('socisPaga', $socisPagaCount)
+            ->with('socisActius', $socisActiusCount)
+            ->with('socisInactiu', $socisInactiusCount)
+            ->with('isSoci', $isSoci)
+            ->with('activities', $activities);
     }
 
-    private function getSoci()
+    private function _getSocisCuota()
     {
-        return view('sociHome');
+        $socisresult =  DB::table('socis')->whereNull('unregister_date')
+        ->whereRaw('(YEAR(NOW())-YEAR(birth_date))>=14 AND (YEAR(NOW())-YEAR(birth_date))<=69')
+        ->get();
+        return $socisresult;
     }
 
-    private function getJunta()
+    private function _getColaborador()
     {
-        $isSoci=false;
-        if(Auth::user()->soci!=null)
-        {
-            $isSoci = true;
+        $activities = $this->_getActivities();
+        if (Auth::user()->soci != null){            
+        $actes = $this->_getActes();
+        return view('sociHome')
+        ->with('actes', $actes)
+            ->with('activities', $activities);
         }
-        else{
-            
-        }
-        $socis = Soci::all()->count();
-        $socisActius = Soci::where('unregister_date',null)->get()->count();
-        $socisInactius = Soci::where('unregister_date','<>',null)->get()->count();        
-        return view('juntaHome')->with('socis',$socis)->with('socisActius',$socisActius)->with('socisInactiu',$socisInactius)->with('isSoci',$isSoci);
+        return view('colaboradorHome')            
+            ->with('activities', $activities);
     }
-    private function getColaborador()
+
+    private function _getActivities()
     {
-        $isSoci=false;
-        if(Auth::user()->soci!=null)
-        {
-            $isSoci = true;
-        }
-        else{
-            
-        }        
-        return view('colaboradorHome')->with('isSoci',$isSoci);
+        $controller = new ActivitatsController();
+        return $controller->getActivities();
+    }
+
+    
+    private function _getActes()
+    {
+        $activitats = Auth::user()->soci->activitats();
+        return $activitats->get();
     }
 }
