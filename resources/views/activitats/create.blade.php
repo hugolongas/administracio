@@ -1,13 +1,8 @@
-@extends('layouts.master', ['body_class' => 'socis create'])
+@extends('layouts.master', ['body_class' => 'activitats create'])
 
 @push('scripts')
-<script src="https://cdnjs.cloudflare.com/ajax/libs/croppie/2.6.2/croppie.js"></script>
 @endpush
 @section('css')
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/croppie/2.6.2/croppie.min.css">
-<style>
-    
-</style>
 @stop
 
 @section('content')
@@ -22,7 +17,25 @@
             <form action="{{route('activitats.store') }}" method="post">
                 {{ csrf_field() }}
                 <div class="row">
-                    <div class="col-12 dades-activitat">                        
+                    <div class="col-12 dades-activitat">
+                        <div class="form-row">
+                            <select id="created_by" name="created_by">
+                                @if ($user->isAdmin())
+                                    @foreach($sections as $section)                                        
+                                        @if($section->section_name!='Soci')
+                                            <option value="{{$section->section_name}}">{{$section->section_name}}</option>
+                                        @endif
+                                    @endforeach
+                                    @else
+                                    @foreach(Auth::user()->sections as $section)
+                                        @if($section->section_name!='Soci')
+                                            <option value="{{$section->section_name}}">{{$section->section_name}}</option>
+                                        @endif
+                                    @endforeach                                
+                                @endif
+                                <option value="{{$user->name}}" selected>{{$user->name}}</option>
+                              </select>
+                        </div>              
                         <div class="form-row">
                             <div class="form-group col-6">
                                 <label for="name">Nom*:</label>
@@ -50,7 +63,7 @@
                     </div>
                 </div>
                 <div class="form-group text-center ">
-                    <button type="submit " class="btn btn-primary " style="padding:8px 100px;margin-top:25px; ">
+                    <button type="submit " class="btn btn-outline-primary " style="padding:8px 100px;margin-top:25px; ">
                         Crear
                     </button>
                 </div>

@@ -72,6 +72,9 @@ body .nav-top .soci-options .soci-img {
 body .nav-top .soci-options .soci-name {
   display: none;
   vertical-align: middle;
+  float: left;
+  padding-top: 15px;
+  padding-right: 10px;
 }
 @media only screen and (min-width: 1024px) {
   body .nav-top .soci-options .soci-name {
@@ -91,12 +94,18 @@ body .nav-top.fixed-menu .soci-name {
   display: none;
 }
 body #main {
-  height: 100vh;
+  height: auto;
   padding-top: 100px;
-  margin-left: 60px;
+  margin-left: 44px;
   -webkit-transition: padding-top 0.2s;
   /* Safari */
   transition: padding-top 0.2s;
+  clear: both;
+}
+body #main:after {
+  clear: both;
+  content: "";
+  display: table;
 }
 @media only screen and (min-width: 1024px) {
   body #main {
@@ -128,7 +137,7 @@ body #main.sidebar-toggled {
 }
 @media only screen and (min-width: 1024px) {
   body #main.sidebar-toggled {
-    margin-left: 60px;
+    margin-left: 50px;
   }
   body #main.sidebar-toggled.fixed-menu .content .options-menu {
     margin-left: 137px;
@@ -137,10 +146,11 @@ body #main.sidebar-toggled {
 body #main .aside {
   float: left;
   height: 100vh;
-  width: 60px;
+  width: 44px;
   background-color: #565657;
-  margin: 0px 0px 0px -60px;
+  margin: 0px 0px 0px -44px;
   position: fixed;
+  overflow: hidden;
 }
 @media only screen and (min-width: 1024px) {
   body #main .aside {
@@ -148,8 +158,19 @@ body #main .aside {
     margin: 0px 0px 0px -197px;
   }
 }
+body #main .aside .nav-item {
+  overflow: hidden;
+  width: 210px;
+}
+body #main .aside .nav-item.active {
+  background-color: black;
+}
+body #main .aside .navbar-link {
+  width: 210px;
+}
 body #main .aside .aside-item {
   display: inline-block;
+  padding-left: 10px;
 }
 body #main .aside.toggled {
   width: 0px;
@@ -158,8 +179,8 @@ body #main .aside.toggled {
 }
 @media only screen and (min-width: 1024px) {
   body #main .aside.toggled {
-    width: 60px;
-    margin: 0px 0px 0px -60px;
+    width: 50px;
+    margin: 0px 0px 0px -50px;
     display: block;
   }
 }
@@ -170,9 +191,9 @@ body #main .content {
   float: left;
   width: 100%;
   min-width: 270px;
-  padding: 0px 20px 0px 20px;
+  padding: 20px 20px 0px 20px;
   background-color: #f8f8f8;
-  min-height: 70vh;
+  min-height: 77vh;
 }
 body #main .content .options-menu {
   margin-top: 20px;
@@ -183,6 +204,10 @@ body #main .content .item-img {
 }
 body #main .error-message {
   color: #bd2417;
+}
+body #footer {
+  height: 100px;
+  width: 100%;
 }
 body #modal-carnet .carnet-content {
   width: 320px;

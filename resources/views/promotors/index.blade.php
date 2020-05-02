@@ -40,7 +40,7 @@
 			{ data: 'description'},
 			{data: null},
 			{data: null},
-			{data: null, defaultContent: '<button class="btn btn-secondary" accion="eliminar">Eliminar</button>'}
+			{data: null, defaultContent: '<button class="btn btn-outline-secondary" accion="eliminar">Eliminar</button>'}
 			],
 			columnDefs: [
 			{
@@ -54,7 +54,7 @@
 					var id = data['id'];			
 					var url = '{{ route("promotors.show", "id") }}';
 					url = url.replace('id', id); 		
-					return '<a class="btn btn-info" role="button" href="'+url+'"><i class="fa fa-eye"></i>Veure</a>';
+					return '<a class="btn btn-outline-info" role="button" href="'+url+'"><i class="fa fa-eye"></i>Veure</a>';
 				}
 			},
 			{
@@ -63,7 +63,7 @@
 					var id = data['id'];	
 					var url = '{{ route("promotors.edit", "id") }}';
 					url = url.replace('id', id);				
-					return '<a class="btn btn-warning" role="button" href="'+url+'"><i class="fa fa-pencil-alt"></i>Editar</a>';
+					return '<a class="btn btn-outline-warning" role="button" href="'+url+'"><i class="fa fa-pencil-alt"></i>Editar</a>';
 				}
 			}
 			]

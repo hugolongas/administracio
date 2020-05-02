@@ -39,7 +39,9 @@ body {
             .soci-name {
                 display: none;
                 vertical-align: middle;
-
+                float: left;
+                padding-top: 15px;
+                padding-right: 10px;
                 @media @media-laptop {
                     display: table-cell;
                 }
@@ -64,12 +66,18 @@ body {
     }
 
     #main {
-        height: 100vh;
+        height: auto;
         padding-top: 100px;
-        margin-left: 60px;
+        margin-left: 44px;
         -webkit-transition: padding-top 0.2s;
         /* Safari */
         transition: padding-top 0.2s;
+        clear: both;
+        &:after{
+            clear: both; 
+            content: "";
+            display: table; 
+        }
 
         @media @media-laptop {
             margin-left: 197px;
@@ -92,7 +100,6 @@ body {
                         margin-top: 10px;
                     }
                 }
-
                 @media @media-laptop {
                     padding-top: 60px;
                 }
@@ -103,7 +110,7 @@ body {
             margin-left: 0px;
 
             @media @media-laptop {
-                margin-left: 60px;
+                margin-left: 50px;
 
                 &.fixed-menu {
                     .content {
@@ -118,18 +125,29 @@ body {
         .aside {
             float: left;
             height: 100vh;
-            width: 60px;
+            width: 44px;
             background-color: @color-aside;
-            margin: 0px 0px 0px -60px;
+            margin: 0px 0px 0px -44px;
             position: fixed;
+            overflow: hidden;
 
             @media @media-laptop {
                 width: 197px;
                 margin: 0px 0px 0px -197px;
             }
-
+            .nav-item {
+                overflow: hidden;
+                width: 210px;
+                &.active{
+                    background-color: black;
+                }
+            }
+            .navbar-link{
+                width: 210px;
+            }
             .aside-item {
                 display: inline-block;
+                padding-left: 10px;
             }
 
             &.toggled {
@@ -138,8 +156,8 @@ body {
                 display: none;
 
                 @media @media-laptop {
-                    width: 60px;
-                    margin: 0px 0px 0px -60px;
+                    width: 50px;
+                    margin: 0px 0px 0px -50px;
                     display: block;
                 }
 
@@ -153,9 +171,9 @@ body {
             float: left;
             width: 100%;
             min-width: 270px;
-            padding: 0px 20px 0px 20px;
+            padding: 20px 20px 0px 20px;
             background-color: @color-content;
-            min-height: 70vh;
+            min-height: 77vh;
 
             .options-menu {
                 margin-top: 20px;
@@ -170,6 +188,11 @@ body {
         .error-message {
             color: #bd2417;
         }
+    }
+
+    #footer{
+        height: 100px;
+        width: 100%;
     }
 
     #modal-carnet {
@@ -239,5 +262,9 @@ body {
                 }
             }
         }
+    }
+
+    .fa{
+        margin-right: 5px;
     }
 }

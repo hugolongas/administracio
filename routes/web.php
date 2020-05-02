@@ -12,6 +12,7 @@
 */
 Auth::routes(['register' => false]);
 
+
 Route::group(['middleware' => ['auth']], function () {
 	Route::get('/home',	['uses' => 'HomeController@getHome', 'as' => 'home']);
 	Route::get('/',	['uses' => 'HomeController@getHome', 'as' => 'home']);
@@ -19,6 +20,26 @@ Route::group(['middleware' => ['auth']], function () {
 	Route::get('perfil/editar', ['uses' => 'PerfilsController@edit', 'as' => 'profile.edit']);
 	Route::put('perfil/update/{id}', ['uses' => 'PerfilsController@update', 'as' => 'profile.update']);
 	Route::post('perfil/uploadImage', ['uses' => 'PerfilsController@uploadImage', 'as' => 'profile.uploadImage']);
+
+	//Activitats		
+	Route::get('activitats', ['uses' => 'ActivitatsController@index', 'as' => 'activitats']);
+	Route::get('activitats/getData', ['uses' => 'ActivitatsController@getData', 'as' => 'activitats.data']);
+	Route::get('activitats/detall/{id}', ['uses' => 'ActivitatsController@show', 'as' => 'activitats.show']);
+	Route::get('activitats/crear', ['uses' => 'ActivitatsController@create', 'as' => 'activitats.create']);
+	Route::post('activitats/store', ['uses' => 'ActivitatsController@store', 'as' => 'activitats.store']);
+	Route::get('activitats/editar/{id}', ['uses' => 'ActivitatsController@edit', 'as' => 'activitats.edit']);
+	Route::put('activitats/update/{id}', ['uses' => 'ActivitatsController@update', 'as' => 'activitats.update']);
+	Route::post('activitats/eliminar/{id}', ['uses' => 'ActivitatsController@delete', 'as' => 'activitats.delete']);
+
+	Route::group(['middleware'=>['role:admin;soci']], function () {//Votacions Concursos
+		
+		Route::get('votacions',['uses'=>'ConcursController@contestSocis','as'=>'votacions']);
+		Route::get('votacions/detall/{id}',['uses'=>'ConcursController@showSoci','as'=>'votacions.show']);
+		Route::get('votacions/projectes/{id}',['uses'=>'ProjectController@index','as'=>'votacions.projects']);
+		Route::get('votacions/concurs/{id}',['uses'=>'VotController@voteContest','as'=>'votacions.vote']);		
+		Route::post('votacions/votat',['uses'=>'VotController@voteStore','as'=>'votacions.store']);
+	});
+	
 
 	//Admin
 	Route::group(['middleware' => ['role:admin']], function () {
@@ -73,34 +94,64 @@ Route::group(['middleware' => ['auth']], function () {
 		Route::get('informes',['uses'=>'InformsController@index','as' => 'informs']);
 		Route::get('informes/llistaSocis',['uses'=>'InformsController@llistaSocis','as'=>'informs.llistaSocis']);
 		Route::get('informes/socisMenors',['uses'=>'InformsController@llistaSocisMenorscatorze','as'=>'informs.socisMenors']);
+
+		//Concurs
+		Route::get('concursos',['uses'=>'ConcursController@index','as'=>'concurs']);
+		Route::get('concursos/detall/{id}',['uses'=>'ConcursController@show','as'=>'concurs.admin_show']);
+		Route::get('concursos/crear', ['uses' => 'ConcursController@create', 'as' => 'concurs.create']);
+		Route::post('concursos/store', ['uses' => 'ConcursController@store', 'as' => 'concurs.store']);
+		Route::get('concursos/editar/{id}', ['uses' => 'ConcursController@edit', 'as' => 'concurs.edit']);
+		Route::put('concursos/update/{id}', ['uses' => 'ConcursController@update', 'as' => 'concurs.update']);
+		Route::get('concursos/finalitzar/{id}', ['uses' => 'ConcursController@endContest', 'as' => 'concurs.close']);
+		Route::get('concursos/resultat/{id}', ['uses' => 'ConcursController@finishContest', 'as' => 'concurs.finish']);		
+
+		Route::post('concursos/eliminar/{id}', ['uses' => 'ConcursController@delete', 'as' => 'concurs.delete']);
+		Route::post('concursos/activar/{id}',['uses'=>'ConcursController@Activate','as'=>'concurs.activate']);
+
+		//Projectes		
+		Route::get('concursos/{id}/afegir_projectes',['uses'=>'ProjectController@index','as'=>'concurs.addProjects']);		
+		Route::get('concursos/{id}/projectes',['uses'=>'ProjectController@index','as'=>'project.projects']);		
+
+		Route::get('concursos/projecte/{id}',['uses'=>'ProjectController@edit','as'=>'project.getProject']);
+
+		Route::post('concursos/store/{id}',['uses'=>'ProjectController@store','as'=>'project.saveProject']);		
+		Route::post('concursos/update/{id}',['uses'=>'ProjectController@update','as'=>'project.updateProject']);
+		Route::post('concursos/projectes/eliminar/{id}',['uses'=>'ProjectController@delete','as'=>'project.delete']);
 		
+		Route::post('votacions/voteAdmin',['uses'=>'VotController@voteStoreAdmin','as'=>'votacions.storeAdmin']);
+
+		Route::post('votacions/votatAdmin',['uses'=>'VotController@voteMailAdmin','as'=>'votacions.storeVoteAdmin']);
+		Route::post('votacions/mesaAdmin',['uses'=>'VotController@voteMesaAdmin','as'=>'votacions.storeMesaVote']);
 	});
 
 
-	Route::group(['middleware' => ['role:admin;colaborador']], function () {
-		//Socis
+	Route::group(['middleware' => ['role:admin;colaborador;entrada']], function () {
 		Route::get('perfilSeccio/{id}', ['uses' => 'SectionsController@editSection', 'as' => 'sections.editSection']);
 		Route::get('seccions/getSocisNotInSection/{idSection}', ['uses' => 'SectionsController@socisNotInSection', 'as' => 'sections.notInSection']);
 		Route::post('seccions/attachSocis/{id}', ['uses' => 'SectionsController@attachSocis', 'as' => 'sections.attachSocis']);
 		Route::post('seccions/detachSoci', ['uses' => 'SectionsController@detachSoci', 'as' => 'sections.detachSoci']);		
 		Route::get('seccions/editar/{id}', ['uses' => 'SectionsController@edit', 'as' => 'sections.edit']);
-		Route::put('seccions/update/{id}', ['uses' => 'SectionsController@update', 'as' => 'sections.update']);
-		
-		//Activitats
-		Route::get('activitats', ['uses' => 'ActivitatsController@index', 'as' => 'activitats']);
-		Route::get('activitats/getData', ['uses' => 'ActivitatsController@getData', 'as' => 'activitats.data']);
-		Route::get('activitats/detall/{id}', ['uses' => 'ActivitatsController@show', 'as' => 'activitats.show']);
-		Route::get('activitats/crear', ['uses' => 'ActivitatsController@create', 'as' => 'activitats.create']);
-		Route::post('activitats/store', ['uses' => 'ActivitatsController@store', 'as' => 'activitats.store']);
-		Route::get('activitats/editar/{id}', ['uses' => 'ActivitatsController@edit', 'as' => 'activitats.edit']);
-		Route::put('activitats/update/{id}', ['uses' => 'ActivitatsController@update', 'as' => 'activitats.update']);
+		Route::put('seccions/update/{id}', ['uses' => 'SectionsController@update', 'as' => 'sections.update']);		
 
-		Route::put('activitats/control_entrada/{id}', ['uses' => 'ActivitatsController@checkEntrance', 'as' => 'activitats.entrada']);
+		//Gestio Activitats
+		Route::get('activitats/control_entrades', ['uses' => 'ActivitatsController@ActivitiesList', 'as' => 'entrades']);
+		Route::get('activitats/control_entrades/{id}', ['uses' => 'ActivitatsController@checkTickets', 'as' => 'entrades.control']);		
+		Route::post('checkSoci', ['uses' => 'ActivitatsController@checkSoci', 'as' => 'entrades.checkSoci']);		
+		Route::post('registrar_entrada', ['uses' => 'ActivitatsController@registerTicket', 'as' => 'entrades.ticket']);
 	});
-
 
 	Route::group(['middleware' => ['role:admin;promotor']], function () {
 		//Promotors
 		Route::get('promotors/editar/{id}', ['uses' => 'PromotorController@edit', 'as' => 'promotors.edit']);
 	});	
+});
+
+Route::get('concurs/{id_contest}');
+
+Route::get('/projectes-bar',	['uses' => 'BarController@Index', 'as' => 'projectBar']);
+Route::post('/projectes-bar',	['uses' => 'BarController@AccesProjects', 'as' => 'projectBarAccess']);
+
+Route::get('/clear-cache', function() {
+    Artisan::call('cache:clear');
+    return "Cache is cleared";
 });

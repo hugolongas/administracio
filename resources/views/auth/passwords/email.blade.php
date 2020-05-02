@@ -28,7 +28,7 @@
                         </div>
                         <div class="form-group row">
                             <div class="col-8 col-md-4 offset-md-4">
-                                <button type="submit" class="btn btn-success">Recuperar contrasenya
+                                <button type="submit" class="btn btn-outline-success">Recuperar contrasenya
                                 </button>
                             </div>
                             <div class="col-4">

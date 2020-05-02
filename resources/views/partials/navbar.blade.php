@@ -2,21 +2,22 @@
         <a class="navbar-brand" href="/">
             <img class="brand-logo img-fluid logo-ateneu" src="{{ asset('img/logo.png') }}" alt="Logo" />
         </a>    
-        <button class="btn btn-link text-black" id="sidebarToggle" href="#">
-          <i class="fas fa-bars"></i>
+        <button class="btn btn-outline-link text-black" id="sidebarToggle" href="#">
+            <i class="fa fa-bars" aria-hidden="true"></i>
         </button>    
 
         <!-- Navbar -->
         <ul class="soci-options navbar-nav ml-auto">
-            <li class="nav-item soci-name">
-                    {{Auth::user()->name}}
-            </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <li class="nav-item">                
+                <a class="nav-link" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <div class="soci-name">
+                    {{Auth::user()->name}}                    
+                </div>                    
                 <img class="soci-img img-fluid rounded-circle" src="@if(Auth::user()->soci!=null)
                 {{Storage::url('socis/'.Auth::user()->soci->soci_img)}}
                 @else{{Storage::url('socis/default.png')}}
                 @endif" />
+                <i class="fa fa-caret-down" aria-hidden="true"></i>
             </a>
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
                     @if(Auth::user()->soci!=null)

@@ -77,6 +77,23 @@ class User extends Authenticatable
         return false;
     }
 
+    public function isAdmin()
+    {
+        foreach ($this->sections as $section) {
+            if ($section->hasRole('admin'))
+                return true;
+        }
+        return false;
+    }
+    public function isControl()
+    {
+        foreach ($this->sections as $section) {
+            if ($section->hasRole('entrada'))
+                return true;
+        }
+        return false;
+    }
+
     public function sendPasswordResetNotification($token)
     {
         $this->notify(new CustomResetPasswordNotification($token));
