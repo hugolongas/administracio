@@ -13,5 +13,4 @@ yarn-error.log
 .env
 .env.prod
 .env.dev
-.env.example
 administracio.code-workspace
