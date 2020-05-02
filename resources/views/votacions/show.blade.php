@@ -26,7 +26,7 @@
         <div style="padding:30px ">
             @if($concurs->finished)
             <div class="alert alert-success" style="text-align: center;margin-bottom: 23px;font-size: 40px;">
-                GUANAYDOR: {{$winner}}
+                GUANYADOR: {{$winner}}
             </div>
             @endif
             <div class="row">
