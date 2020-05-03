@@ -135,7 +135,7 @@
 						url: url,
 						type: 'POST',
 						success: function () {
-							$('#project-table').DataTable().ajax.reload();
+							$('#contest-table').DataTable().ajax.reload();
 							var alert="<div id='custom-alert' class='alert alert-danger'>Concurs Eliminat</div>";
 							$("#content").prepend(alert);
 							setTimeout(function(){
