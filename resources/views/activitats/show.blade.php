@@ -1,7 +1,7 @@
 @extends('layouts.master', ['body_class' => 'activitats show'])
 @section('content')
 <div class="options-menu">
-    <a href="{{ route('activitats')}}" class="btn btn-outline-dark"><i class="fa fa-angle-left"></i>tornar</a>
+    <a href="{{ route('activitats')}}" class="btn btn-outline-dark"><i class="fas fa-angle-left"></i>tornar</a>
 </div>
 <h4>Dades Activitat</h4>
 <div class="row" style="margin-top:40px ">

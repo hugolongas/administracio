@@ -17,7 +17,7 @@
 
 @section('content')
 <div class="options-menu">
-    <a href="{{ route('votacions')}}" class="btn btn-outline-dark"><i class="fa fa-angle-left"></i>tornar</a>
+    <a href="{{ route('votacions')}}" class="btn btn-outline-dark"><i class="fas fa-angle-left"></i>tornar</a>
 </div>
 <meta name="csrf-token" content="{{ csrf_token() }}">
 <div class=" row " style="margin-top:40px ">

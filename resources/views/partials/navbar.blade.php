@@ -3,7 +3,7 @@
             <img class="brand-logo img-fluid logo-ateneu" src="{{ asset('img/logo.png') }}" alt="Logo" />
         </a>    
         <button class="btn btn-outline-link text-black" id="sidebarToggle" href="#">
-            <i class="fa fa-bars" aria-hidden="true"></i>
+            <i class="fas fa-bars" aria-hidden="true"></i>
         </button>    
 
         <!-- Navbar -->
@@ -17,7 +17,7 @@
                 {{Storage::url('socis/'.Auth::user()->soci->soci_img)}}
                 @else{{Storage::url('socis/default.png')}}
                 @endif" />
-                <i class="fa fa-caret-down" aria-hidden="true"></i>
+                <i class="fas fa-caret-down" aria-hidden="true"></i>
             </a>
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
                     @if(Auth::user()->soci!=null)

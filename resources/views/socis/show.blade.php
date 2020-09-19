@@ -1,7 +1,7 @@
 @extends('layouts.master', ['body_class' => 'socis show'])
 @section('content')
 <div class="options-menu">
-        <a href="{{ route('socis')}}" class="btn btn-outline-dark"><i class="fa fa-angle-left"></i>tornar</a>
+        <a href="{{ route('socis')}}" class="btn btn-outline-dark"><i class="fas fa-angle-left"></i>tornar</a>
 </div>
 <div class="row">
     <div class="col-12 dades">

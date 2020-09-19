@@ -7,7 +7,7 @@
 
 @section('content')
 <div class="options-menu">
-    <a href="{{ route('activitats')}}" class="btn btn-outline-dark"><i class="fa fa-angle-left"></i>tornar</a>
+    <a href="{{ route('activitats')}}" class="btn btn-outline-dark"><i class="fas fa-angle-left"></i>tornar</a>
 </div>
 <meta name="csrf-token" content="{{ csrf_token() }}">
 <div class=" row " style="margin-top:40px ">
@@ -72,6 +72,11 @@
     </div>
 </div>
 @stop
-
+@push('scripts')
+<script src="//cdn.ckeditor.com/4.14.0/basic/ckeditor.js"></script>
+@endpush
 @section('js')
+<script>
+    CKEDITOR.replace('description');
+</script>
 @stop

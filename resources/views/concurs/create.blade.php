@@ -13,7 +13,7 @@
 
 @section('content')
 <div class="options-menu">
-    <a href="{{ route('concurs')}}" class="btn btn-outline-dark"><i class="fa fa-angle-left"></i>tornar</a>
+    <a href="{{ route('concurs')}}" class="btn btn-outline-dark"><i class="fas fa-angle-left"></i>tornar</a>
 </div>
 <meta name="csrf-token" content="{{ csrf_token() }}">
 <div class=" row " style="margin-top:40px ">
@@ -41,7 +41,7 @@
                                     aria-label="Password" />
                                 <div class="input-group-append reveal">
                                     <span class="input-group-text">
-                                        <i id="eye-icon" class="fa fa-eye-slash" aria-hidden="true"></i>
+                                        <i id="eye-icon" class="fas fa-eye-slash" aria-hidden="true"></i>
                                     </span>
                                 </div>
                             </div>
@@ -61,7 +61,7 @@
                                     tabindex="4" />
                                 <div class="input-group-append" data-target="#startVotationsDate"
                                     data-toggle="datetimepicker">
-                                    <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                    <div class="input-group-text"><i class="fas fa-calendar"></i></div>
                                 </div>
                             </div>
                             @if($errors->has('startVotationsDate'))
@@ -76,7 +76,7 @@
                                     tabindex="5" />
                                 <div class="input-group-append" data-target="#endVotationsDate"
                                     data-toggle="datetimepicker">
-                                    <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                    <div class="input-group-text"><i class="fas fa-calendar"></i></div>
                                 </div>
                             </div>
                             @if($errors->has('endVotationsDate'))

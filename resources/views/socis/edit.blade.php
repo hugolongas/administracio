@@ -9,7 +9,7 @@
 
 @section('content')
 <div class="options-menu">
-    <a href="{{ route('socis')}}" class="btn btn-outline-dark"><i class="fa fa-angle-left"></i>tornar</a>
+    <a href="{{ route('socis')}}" class="btn btn-outline-dark"><i class="fas fa-angle-left"></i>tornar</a>
 </div>
 <meta name="csrf-token" content="{{ csrf_token() }}">
 <div class="row" style="margin-top:40px ">
@@ -149,7 +149,7 @@
                                                         <img class="gambar img-responsive img-thumbnail"
                                                             id="item-img-output"
                                                             src="{{asset('storage/socis').'/'.$soci->soci_img}}" />
-                                                        <figcaption><i class="fa fa-camera"></i></figcaption>
+                                                        <figcaption><i class="fas fa-camera"></i></figcaption>
                                                     </figure>
                                                     <input type="file" class="item-img file center-block"
                                                         name="file_photo" />

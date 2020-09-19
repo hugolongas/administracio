@@ -41,7 +41,7 @@
 @stop
 @section('content')
 <div class="options-menu">
-    <a href="{{ url()->previous() }}" class="btn btn-outline-dark"><i class="fa fa-angle-left"></i>tornar</a>
+    <a href="{{ url()->previous() }}" class="btn btn-outline-dark"><i class="fas fa-angle-left"></i>tornar</a>
 </div>
 @if ($errors->any())
 <div class="alert alert-danger">

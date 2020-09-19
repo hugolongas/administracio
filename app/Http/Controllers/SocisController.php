@@ -372,6 +372,9 @@ class SocisController extends Controller
 				$user->name = $name . ' ' . $surname . ' ' . $secondSurname;				
 				$user->email = $email;
 				$user->save();
+				
+				$section = Section::findOrFail(2);
+				$section->users()->attach($user);
 			}
 			Notification::success('Soci actualitzat Correctament');
 		}

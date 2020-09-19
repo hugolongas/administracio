@@ -177,7 +177,7 @@
 					var id = data['id'];			
 					var url = '{{ route("socis.show", "id") }}';
 					url = url.replace('id', id); 		
-					return '<a class="btn btn-outline-info" role="button" href="'+url+'"><i class="fa fa-eye"></i>Veure</a>';
+					return '<a class="btn btn-outline-info" role="button" href="'+url+'"><i class="fas fa-eye"></i>Veure</a>';
 				}
 			},
 			{
@@ -186,7 +186,7 @@
 					var id = data['id'];	
 					var url = '{{ route("socis.edit", "id") }}';
 					url = url.replace('id', id);				
-					return '<a class="btn btn-outline-warning" role="button" href="'+url+'"><i class="fa fa-pencil-alt"></i>Editar</a>';
+					return '<a class="btn btn-outline-warning" role="button" href="'+url+'"><i class="fas fa-pencil-alt"></i>Editar</a>';
 				}
 			},
 			{

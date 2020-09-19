@@ -17,7 +17,7 @@
 
 @section('content')
 <div class="options-menu">
-    <a href="{{ route('concurs')}}" class="btn btn-outline-dark"><i class="fa fa-angle-left"></i>tornar</a>
+    <a href="{{ route('concurs')}}" class="btn btn-outline-dark"><i class="fas fa-angle-left"></i>tornar</a>
 </div>
 <meta name="csrf-token" content="{{ csrf_token() }}">
 <div class=" row " style="margin-top:40px ">
@@ -35,7 +35,7 @@
                         <input type="password" class="form-control pwd" value="{{$concurs->password}}" readonly />
                         <div class="input-group-append reveal">
                             <span class="input-group-text">
-                                <i id="eye-icon" class="fa fa-eye-slash" aria-hidden="true"></i>
+                                <i id="eye-icon" class="fas fa-eye-slash" aria-hidden="true"></i>
                             </span>
                         </div>
                     </div>

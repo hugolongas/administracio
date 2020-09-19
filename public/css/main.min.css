@@ -40,58 +40,8 @@ body .fa-angle-left {
 body {
   margin: 0px;
   padding: 0px;
-  background-color: #343435;
+  background-color: #252b30;
   font-family: 'Roboto', sans-serif;
-}
-body .nav-top {
-  height: 100px;
-  box-shadow: 0px 0px 7px 1px #343435;
-  -webkit-transition: height 0.2s;
-  /* Safari */
-  transition: height 0.2s;
-}
-body .nav-top .navbar-brand {
-  color: #777;
-}
-body .nav-top .navbar-brand .logo-ateneu {
-  width: 100px;
-  -webkit-transition: width 0.2s;
-  /* Safari */
-  transition: width 0.2s;
-}
-body .nav-top .text-black {
-  color: #777;
-}
-body .nav-top .soci-options {
-  display: table;
-}
-body .nav-top .soci-options .soci-img {
-  float: left;
-  width: 50px;
-}
-body .nav-top .soci-options .soci-name {
-  display: none;
-  vertical-align: middle;
-  float: left;
-  padding-top: 15px;
-  padding-right: 10px;
-}
-@media only screen and (min-width: 1024px) {
-  body .nav-top .soci-options .soci-name {
-    display: table-cell;
-  }
-}
-body .nav-top.fixed-menu {
-  height: 60px;
-}
-body .nav-top.fixed-menu .logo-ateneu {
-  width: 60px;
-}
-body .nav-top.fixed-menu .soci-img {
-  width: 30px;
-}
-body .nav-top.fixed-menu .soci-name {
-  display: none;
 }
 body #main {
   height: auto;
@@ -109,7 +59,7 @@ body #main:after {
 }
 @media only screen and (min-width: 1024px) {
   body #main {
-    margin-left: 197px;
+    margin-left: 250px;
   }
 }
 body #main.fixed-menu .aside {
@@ -142,50 +92,6 @@ body #main.sidebar-toggled {
   body #main.sidebar-toggled.fixed-menu .content .options-menu {
     margin-left: 137px;
   }
-}
-body #main .aside {
-  float: left;
-  height: 100vh;
-  width: 44px;
-  background-color: #565657;
-  margin: 0px 0px 0px -44px;
-  position: fixed;
-  overflow: hidden;
-}
-@media only screen and (min-width: 1024px) {
-  body #main .aside {
-    width: 197px;
-    margin: 0px 0px 0px -197px;
-  }
-}
-body #main .aside .nav-item {
-  overflow: hidden;
-  width: 210px;
-}
-body #main .aside .nav-item.active {
-  background-color: black;
-}
-body #main .aside .navbar-link {
-  width: 210px;
-}
-body #main .aside .aside-item {
-  display: inline-block;
-  padding-left: 10px;
-}
-body #main .aside.toggled {
-  width: 0px;
-  margin: 0px 0px 0px 0px;
-  display: none;
-}
-@media only screen and (min-width: 1024px) {
-  body #main .aside.toggled {
-    width: 50px;
-    margin: 0px 0px 0px -50px;
-    display: block;
-  }
-}
-body #main .aside.toggled .aside-item {
-  display: none;
 }
 body #main .content {
   float: left;
@@ -265,6 +171,109 @@ body #modal-carnet .carnet-content .carnet-img {
 body #modal-carnet .carnet-content .carnet-img img {
   box-shadow: 0px 0px 10px 4px #cf0e29;
 }
+body .fas {
+  margin-right: 5px;
+}
+.nav-top {
+  height: 100px;
+  box-shadow: 0px 0px 7px 1px #343435;
+  -webkit-transition: height 0.2s;
+  /* Safari */
+  transition: height 0.2s;
+}
+.nav-top .navbar-brand {
+  color: #777;
+}
+.nav-top .navbar-brand .logo-ateneu {
+  width: 100px;
+  -webkit-transition: width 0.2s;
+  /* Safari */
+  transition: width 0.2s;
+}
+.nav-top .text-black {
+  color: #777;
+}
+.nav-top .soci-options {
+  display: table;
+}
+.nav-top .soci-options .soci-img {
+  float: left;
+  width: 50px;
+}
+.nav-top .soci-options .soci-name {
+  display: none;
+  vertical-align: middle;
+  float: left;
+  padding-top: 15px;
+  padding-right: 10px;
+}
+@media only screen and (min-width: 1024px) {
+  .nav-top .soci-options .soci-name {
+    display: table-cell;
+  }
+}
+.nav-top.fixed-menu {
+  height: 60px;
+}
+.nav-top.fixed-menu .logo-ateneu {
+  width: 60px;
+}
+.nav-top.fixed-menu .soci-img {
+  width: 30px;
+}
+.nav-top.fixed-menu .soci-name {
+  display: none;
+}
+.aside {
+  float: left;
+  height: 100vh;
+  width: 44px;
+  background-color: #ececec;
+  margin: 0px 0px 0px -44px;
+  position: fixed;
+  overflow: hidden;
+}
+@media only screen and (min-width: 1024px) {
+  .aside {
+    width: 250px;
+    margin: 0px 0px 0px -250px;
+  }
+}
+.aside .nav-item {
+  overflow: hidden;
+  width: 250px;
+}
+.aside .nav-item a {
+  color: #5a6a70;
+}
+.aside .nav-item.active {
+  background-color: #eb3739;
+}
+.aside .nav-item.active a {
+  color: white;
+}
+.aside .navbar-link {
+  width: 250x;
+}
+.aside .aside-item {
+  display: inline-block;
+  padding-left: 10px;
+}
+.aside.toggled {
+  width: 0px;
+  margin: 0px 0px 0px 0px;
+  display: none;
+}
+@media only screen and (min-width: 1024px) {
+  .aside.toggled {
+    width: 50px;
+    margin: 0px 0px 0px -50px;
+    display: block;
+  }
+}
+.aside.toggled .aside-item {
+  display: none;
+}
 #main .socis label.cabinet {
   display: block;
   cursor: pointer;
@@ -303,4 +312,23 @@ body #modal-carnet .carnet-content .carnet-img img {
   width: 250px;
   height: 250px;
   padding-bottom: 25px;
+}
+#main .documents .document-item {
+  background-color: #cecccc;
+  padding: 10px;
+  margin: 10px;
+}
+#main .documents .document-item:hover {
+  background-color: #9c9c9c;
+}
+#main .documents .document-item a {
+  color: black;
+  text-decoration: none;
+}
+#main .documents .document-item .title {
+  font-size: 18px;
+}
+#main .documents .document-item .description {
+  font-size: 12px;
+  padding-top: 14px;
 }

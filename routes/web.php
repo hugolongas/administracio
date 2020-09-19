@@ -10,6 +10,9 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+use App\Providers\RouteServiceProvider;
+
 Auth::routes(['register' => false]);
 
 
@@ -39,6 +42,10 @@ Route::group(['middleware' => ['auth']], function () {
 		Route::get('votacions/concurs/{id}',['uses'=>'VotController@voteContest','as'=>'votacions.vote']);		
 		Route::post('votacions/votat',['uses'=>'VotController@voteStore','as'=>'votacions.store']);
 	});
+
+	//Documents
+	Route::get('documents',['uses'=>'DocumentsController@index','as'=>'documents']);
+	Route::get('documents/{document}',['uses'=>'DocumentsController@show','as'=>'documents.show']);
 	
 
 	//Admin
@@ -104,24 +111,27 @@ Route::group(['middleware' => ['auth']], function () {
 		Route::put('concursos/update/{id}', ['uses' => 'ConcursController@update', 'as' => 'concurs.update']);
 		Route::get('concursos/finalitzar/{id}', ['uses' => 'ConcursController@endContest', 'as' => 'concurs.close']);
 		Route::get('concursos/resultat/{id}', ['uses' => 'ConcursController@finishContest', 'as' => 'concurs.finish']);		
-
 		Route::post('concursos/eliminar/{id}', ['uses' => 'ConcursController@delete', 'as' => 'concurs.delete']);
 		Route::post('concursos/activar/{id}',['uses'=>'ConcursController@Activate','as'=>'concurs.activate']);
 
-		//Projectes		
+				
 		Route::get('concursos/{id}/afegir_projectes',['uses'=>'ProjectController@index','as'=>'concurs.addProjects']);		
 		Route::get('concursos/{id}/projectes',['uses'=>'ProjectController@index','as'=>'project.projects']);		
-
 		Route::get('concursos/projecte/{id}',['uses'=>'ProjectController@edit','as'=>'project.getProject']);
-
 		Route::post('concursos/store/{id}',['uses'=>'ProjectController@store','as'=>'project.saveProject']);		
 		Route::post('concursos/update/{id}',['uses'=>'ProjectController@update','as'=>'project.updateProject']);
-		Route::post('concursos/projectes/eliminar/{id}',['uses'=>'ProjectController@delete','as'=>'project.delete']);
-		
+		Route::post('concursos/projectes/eliminar/{id}',['uses'=>'ProjectController@delete','as'=>'project.delete']);		
 		Route::post('votacions/voteAdmin',['uses'=>'VotController@voteStoreAdmin','as'=>'votacions.storeAdmin']);
-
 		Route::post('votacions/votatAdmin',['uses'=>'VotController@voteMailAdmin','as'=>'votacions.storeVoteAdmin']);
 		Route::post('votacions/mesaAdmin',['uses'=>'VotController@voteMesaAdmin','as'=>'votacions.storeMesaVote']);
+
+		//Downloads
+		Route::get('gestio-documents',['uses'=>'DocumentsController@indexJunta','as'=>'documentsAdmin']);
+		Route::get('gestio-documents/crear',['uses'=>'DocumentsController@create','as'=>'documentsAdmin.create']);
+		Route::post('gestio-documents/store',['uses'=>'DocumentsController@store','as'=>'documentsAdmin.store']);
+		Route::get('gestio-documents/edit/{document}',['uses'=>'DocumentsController@edit','as'=>'documentsAdmin.edit']);
+		Route::put('gestio-documents/update/{document}',['uses'=>'DocumentsController@update','as'=>'documentsAdmin.update']);
+		Route::post('gestio-documents/delete/{id}',['uses'=>'DocumentsController@delete','as'=>'documentsAdmin.delete']);
 	});
 
 
@@ -144,14 +154,4 @@ Route::group(['middleware' => ['auth']], function () {
 		//Promotors
 		Route::get('promotors/editar/{id}', ['uses' => 'PromotorController@edit', 'as' => 'promotors.edit']);
 	});	
-});
-
-Route::get('concurs/{id_contest}');
-
-Route::get('/projectes-bar',	['uses' => 'BarController@Index', 'as' => 'projectBar']);
-Route::post('/projectes-bar',	['uses' => 'BarController@AccesProjects', 'as' => 'projectBarAccess']);
-
-Route::get('/clear-cache', function() {
-    Artisan::call('cache:clear');
-    return "Cache is cleared";
 });
