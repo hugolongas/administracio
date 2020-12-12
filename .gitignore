@@ -14,3 +14,4 @@ yarn-error.log
 .env.prod
 .env.dev
 administracio.code-workspace
+auth.json

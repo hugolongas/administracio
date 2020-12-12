@@ -40,11 +40,12 @@
           <div id="carnet" class="carnet"></div>
         </div>
         <div class="col-4 carnet-img">
-          <img class="img-fluid" src="@if(Auth::user()->soci!=null)
-          {{Storage::url('socis/'.Auth::user()->soci->soci_img)}}
+          @if(Auth::user()->soci!=null)
+          <img class="img-fluid" src="{{Storage::url('socis/'.Auth::user()->soci->soci_img)}}"/>
           @else
-          {{Storage::url('socis/default.png')}}
-          @endif" />
+          <img class="img-fluid" src="{{Storage::url('socis/default.png')}}"/>
+          @endif
+          <div class="carnet-periode">{{quarter()}}</div>
         </div>
       </div>
     </div>

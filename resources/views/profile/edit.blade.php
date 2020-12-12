@@ -251,6 +251,7 @@
 <script type="text/javascript">
 // Start upload preview image
 var $uploadCrop,tempFilename,rawImg,imageId;
+
 function readFile(input) {
     if (input.files && input.files[0]) {
         var reader = new FileReader();
@@ -274,6 +275,7 @@ $uploadCrop = $('#upload-demo').croppie({
     enforceBoundary: false,
     enableExif: true
 });
+
 $('#cropImagePop').on('shown.bs.modal', function(){
     $uploadCrop.croppie('bind', {
         url: rawImg
@@ -281,11 +283,13 @@ $('#cropImagePop').on('shown.bs.modal', function(){
         console.log('jQuery bind complete');
     });
 });
+
 $('.item-img').on('change', function () {
     imageId = $(this).data('id');
     tempFilename = $(this).val();
     $('#cancelCropBtn').data('id', imageId); readFile(this); 
 });
+
 $('#cropImageBtn').on('click', function (ev) {
     imgName = $("#imgName").val();
     $uploadCrop.croppie('result', {
@@ -312,16 +316,18 @@ $('#cropImageBtn').on('click', function (ev) {
         });
     });
 });
+
 $(document).ready(function(){
     $(window).bind('keydown', function(event) {
-    if (event.ctrlKey || event.metaKey) {
-        switch (String.fromCharCode(event.which).toLowerCase()) {
-        case 's':
-            event.preventDefault();            
-            $("#editForm").submit();
-            break;
-    }
-});
+        if (event.ctrlKey || event.metaKey) {
+            switch (String.fromCharCode(event.which).toLowerCase()) {
+                case 's':
+                event.preventDefault();            
+                $("#editForm").submit();
+                break;
+                }
+        }
+    });
 });
 </script>
 @stop

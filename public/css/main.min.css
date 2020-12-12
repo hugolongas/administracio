@@ -171,6 +171,11 @@ body #modal-carnet .carnet-content .carnet-img {
 body #modal-carnet .carnet-content .carnet-img img {
   box-shadow: 0px 0px 10px 4px #cf0e29;
 }
+body #modal-carnet .carnet-content .carnet-img .carnet-periode {
+  margin-top: 5px;
+  text-align: center;
+  color: #ffffff;
+}
 body .fas {
   margin-right: 5px;
 }
