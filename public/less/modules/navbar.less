@@ -1,0 +1,59 @@
+@import "vars.less";
+.nav-top {
+    height: 100px;
+    box-shadow: 0px 0px 7px 1px #343435;
+    -webkit-transition: height 0.2s;
+    /* Safari */
+    transition: height 0.2s;
+
+    .navbar-brand {
+        color: #777;
+
+        .logo-ateneu {
+            width: 100px;
+            -webkit-transition: width 0.2s;
+            /* Safari */
+            transition: width 0.2s;
+        }
+    }
+
+    .text-black {
+        color: #777;
+    }
+
+    .soci-options {
+        display: table;
+
+        .soci-img {
+            float: left;
+            width: 50px;
+        }
+
+        .soci-name {
+            display: none;
+            vertical-align: middle;
+            float: left;
+            padding-top: 15px;
+            padding-right: 10px;
+            @media @media-laptop {
+                display: table-cell;
+            }
+        }
+    }
+
+    &.fixed-menu {
+        height: 60px;
+
+        .logo-ateneu {
+            width: 60px;
+        }
+
+        .soci-img {
+            width: 30px;
+        }
+
+        .soci-name {
+            display: none;
+        }
+    }
+}

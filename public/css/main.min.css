@@ -1,0 +1,339 @@
+@font-face {
+  font-family: "robotoBold";
+  src: url('../fonts/robotoBold.eot');
+  src: url('../fonts/robotoBold.eot?iefix') format('eot'), url('../fonts/robotoBold.woff') format('woff'), url('../fonts/robotoBold.ttf') format('truetype'), url('../fonts/robotoBold.svg#webfontaBGRTKCG') format('svg');
+}
+@font-face {
+  font-family: "robotoRegular";
+  src: url('../fonts/robotoRegular.eot');
+  src: url('../fonts/robotoRegular?iefix') format('eot'), url('../fonts/robotoRegular.woff') format('woff'), url('../fonts/robotoRegular.ttf') format('truetype'), url('../fonts/robotoRegular.svg#webfontaBGRTKCG') format('svg');
+}
+@font-face {
+  font-family: "cocogoose";
+  src: url('../fonts/cocogoose.eot');
+  src: url('../fonts/cocogoose?iefix') format('eot'), url('../fonts/cocogoose.woff') format('woff'), url('../fonts/cocogoose.ttf') format('truetype'), url('../fonts/cocogoose.svg#webfontaBGRTKCG') format('svg');
+}
+@font-face {
+  font-family: "Glyphicons Halflings";
+  src: url('../fonts/glyphicons-halflings-regular.eot');
+  src: url('../fonts/glyphicons-halflings-regular.eot?iefix') format('eot'), url('../fonts/glyphicons-halflings-regular.woff') format('woff'), url('../fonts/glyphicons-halflings-regular.ttf') format('truetype'), url('../fonts/glyphicons-halflings-regular.svg#webfontaBGRTKCG') format('svg');
+}
+@font-face {
+  font-family: "myriad";
+  src: url(../fonts/MyriadPro.otf) format("truetype");
+}
+body a {
+  color: #fff;
+}
+body a:hover {
+  color: #fff;
+}
+body a:focus {
+  color: #fff;
+}
+body a:active {
+  color: #fff;
+}
+body .fa-angle-left {
+  margin-right: 25px;
+}
+body {
+  margin: 0px;
+  padding: 0px;
+  background-color: #252b30;
+  font-family: 'Roboto', sans-serif;
+}
+body #main {
+  height: auto;
+  padding-top: 100px;
+  margin-left: 44px;
+  -webkit-transition: padding-top 0.2s;
+  /* Safari */
+  transition: padding-top 0.2s;
+  clear: both;
+}
+body #main:after {
+  clear: both;
+  content: "";
+  display: table;
+}
+@media only screen and (min-width: 1024px) {
+  body #main {
+    margin-left: 250px;
+  }
+}
+body #main.fixed-menu .aside {
+  margin-top: -40px !important;
+}
+body #main.fixed-menu .content .options-menu {
+  position: relative;
+}
+@media only screen and (min-width: 1024px) {
+  body #main.fixed-menu .content .options-menu {
+    position: fixed;
+    top: 0px;
+    z-index: 1030;
+    margin: 0px;
+    margin-top: 10px;
+  }
+}
+@media only screen and (min-width: 1024px) {
+  body #main.fixed-menu .content {
+    padding-top: 60px;
+  }
+}
+body #main.sidebar-toggled {
+  margin-left: 0px;
+}
+@media only screen and (min-width: 1024px) {
+  body #main.sidebar-toggled {
+    margin-left: 50px;
+  }
+  body #main.sidebar-toggled.fixed-menu .content .options-menu {
+    margin-left: 137px;
+  }
+}
+body #main .content {
+  float: left;
+  width: 100%;
+  min-width: 270px;
+  padding: 20px 20px 0px 20px;
+  background-color: #f8f8f8;
+  min-height: 77vh;
+}
+body #main .content .options-menu {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+body #main .content .item-img {
+  max-width: 100px !Important;
+}
+body #main .error-message {
+  color: #bd2417;
+}
+body #footer {
+  height: 100px;
+  width: 100%;
+}
+body #modal-carnet .carnet-content {
+  width: 320px;
+  height: 175px;
+  margin: 50px auto;
+  background-image: url(../img/carnet_background.jpg);
+  background-size: contain;
+  background-repeat: no-repeat;
+  position: relative;
+}
+@media only screen and (min-width: 1024px) {
+  body #modal-carnet .carnet-content {
+    width: 600px;
+    height: 330px;
+  }
+}
+body #modal-carnet .carnet-content .row {
+  margin: 0px;
+}
+body #modal-carnet .carnet-content .carnet-info {
+  color: white;
+  font-size: 20px;
+  margin-top: 53px;
+}
+@media only screen and (min-width: 1024px) {
+  body #modal-carnet .carnet-content .carnet-info {
+    font-size: 25px;
+    margin-top: 90px;
+  }
+}
+body #modal-carnet .carnet-content .carnet-info .name-soci {
+  text-transform: capitalize;
+}
+body #modal-carnet .carnet-content .carnet-info .carnet {
+  width: 190px !important;
+  background: white;
+  padding-top: 5px !important;
+}
+@media only screen and (min-width: 1024px) {
+  body #modal-carnet .carnet-content .carnet-info .carnet {
+    padding-top: 8px !important;
+  }
+}
+body #modal-carnet .carnet-content .carnet-info .carnet object {
+  width: 190px !important;
+}
+body #modal-carnet .carnet-content .carnet-img {
+  margin-top: 53px;
+}
+@media only screen and (min-width: 1024px) {
+  body #modal-carnet .carnet-content .carnet-img {
+    margin-top: 90px;
+  }
+}
+body #modal-carnet .carnet-content .carnet-img img {
+  box-shadow: 0px 0px 10px 4px #cf0e29;
+}
+body #modal-carnet .carnet-content .carnet-img .carnet-periode {
+  margin-top: 5px;
+  text-align: center;
+  color: #ffffff;
+}
+body .fas {
+  margin-right: 5px;
+}
+.nav-top {
+  height: 100px;
+  box-shadow: 0px 0px 7px 1px #343435;
+  -webkit-transition: height 0.2s;
+  /* Safari */
+  transition: height 0.2s;
+}
+.nav-top .navbar-brand {
+  color: #777;
+}
+.nav-top .navbar-brand .logo-ateneu {
+  width: 100px;
+  -webkit-transition: width 0.2s;
+  /* Safari */
+  transition: width 0.2s;
+}
+.nav-top .text-black {
+  color: #777;
+}
+.nav-top .soci-options {
+  display: table;
+}
+.nav-top .soci-options .soci-img {
+  float: left;
+  width: 50px;
+}
+.nav-top .soci-options .soci-name {
+  display: none;
+  vertical-align: middle;
+  float: left;
+  padding-top: 15px;
+  padding-right: 10px;
+}
+@media only screen and (min-width: 1024px) {
+  .nav-top .soci-options .soci-name {
+    display: table-cell;
+  }
+}
+.nav-top.fixed-menu {
+  height: 60px;
+}
+.nav-top.fixed-menu .logo-ateneu {
+  width: 60px;
+}
+.nav-top.fixed-menu .soci-img {
+  width: 30px;
+}
+.nav-top.fixed-menu .soci-name {
+  display: none;
+}
+.aside {
+  float: left;
+  height: 100vh;
+  width: 44px;
+  background-color: #ececec;
+  margin: 0px 0px 0px -44px;
+  position: fixed;
+  overflow: hidden;
+}
+@media only screen and (min-width: 1024px) {
+  .aside {
+    width: 250px;
+    margin: 0px 0px 0px -250px;
+  }
+}
+.aside .nav-item {
+  overflow: hidden;
+  width: 250px;
+}
+.aside .nav-item a {
+  color: #5a6a70;
+}
+.aside .nav-item.active {
+  background-color: #eb3739;
+}
+.aside .nav-item.active a {
+  color: white;
+}
+.aside .navbar-link {
+  width: 250x;
+}
+.aside .aside-item {
+  display: inline-block;
+  padding-left: 10px;
+}
+.aside.toggled {
+  width: 0px;
+  margin: 0px 0px 0px 0px;
+  display: none;
+}
+@media only screen and (min-width: 1024px) {
+  .aside.toggled {
+    width: 50px;
+    margin: 0px 0px 0px -50px;
+    display: block;
+  }
+}
+.aside.toggled .aside-item {
+  display: none;
+}
+#main .socis label.cabinet {
+  display: block;
+  cursor: pointer;
+}
+#main .socis label.cabinet input .file {
+  position: relative;
+  height: 100%;
+  width: auto;
+  opacity: 0;
+  -moz-opacity: 0;
+  filter: progid:DXImageTransform.Microsoft.Alpha(opacity=0);
+  margin-top: -30px;
+  display: none;
+}
+#main .socis label.cabinet figure figcaption {
+  position: absolute;
+  bottom: 50px;
+  color: #fff;
+  padding-left: 5px;
+  padding-bottom: 5px;
+  text-shadow: 0 0 10px #000;
+  left: 20px;
+}
+#main .socis .field {
+  clear: both;
+  display: block;
+}
+#main .socis .dades,
+#main .socis .dades-personals,
+#main .socis .dades-observacions,
+#main .socis .dades-adresa,
+#main .socis .dades-banc {
+  margin-bottom: 10px;
+}
+#main .socis #upload-demo {
+  width: 250px;
+  height: 250px;
+  padding-bottom: 25px;
+}
+#main .documents .document-item {
+  background-color: #cecccc;
+  padding: 10px;
+  margin: 10px;
+}
+#main .documents .document-item:hover {
+  background-color: #9c9c9c;
+}
+#main .documents .document-item a {
+  color: black;
+  text-decoration: none;
+}
+#main .documents .document-item .title {
+  font-size: 18px;
+}
+#main .documents .document-item .description {
+  font-size: 12px;
+  padding-top: 14px;
+}

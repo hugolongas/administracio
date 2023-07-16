@@ -1,0 +1,172 @@
+@import 'modules/vars';
+
+body {
+    margin: 0px;
+    padding: 0px;
+    background-color: @color-body;
+    font-family: @font-Roboto;
+
+   
+    #main {
+        height: auto;
+        padding-top: 100px;
+        margin-left: 44px;
+        -webkit-transition: padding-top 0.2s;
+        /* Safari */
+        transition: padding-top 0.2s;
+        clear: both;
+        &:after{
+            clear: both; 
+            content: "";
+            display: table; 
+        }
+
+        @media @media-laptop {
+            margin-left: 250px;
+        }
+
+        &.fixed-menu {
+            .aside {
+                margin-top: -40px !important;
+            }
+
+            .content {
+                .options-menu {
+                    position: relative;
+
+                    @media @media-laptop {
+                        position: fixed;
+                        top: 0px;
+                        z-index: 1030;
+                        margin: 0px;
+                        margin-top: 10px;
+                    }
+                }
+                @media @media-laptop {
+                    padding-top: 60px;
+                }
+            }
+        }
+
+        &.sidebar-toggled {
+            margin-left: 0px;
+
+            @media @media-laptop {
+                margin-left: 50px;
+
+                &.fixed-menu {
+                    .content {
+                        .options-menu {
+                            margin-left: 137px;
+                        }
+                    }
+                }
+            }
+        }
+
+        .content {
+            float: left;
+            width: 100%;
+            min-width: 270px;
+            padding: 20px 20px 0px 20px;
+            background-color: @color-content;
+            min-height: 77vh;
+
+            .options-menu {
+                margin-top: 20px;
+                margin-bottom: 20px;
+            }
+
+            .item-img {
+                max-width: 100px !Important;
+            }
+        }
+
+        .error-message {
+            color: #bd2417;
+        }
+    }
+
+    #footer{
+        height: 100px;
+        width: 100%;
+    }
+
+    #modal-carnet {
+        .carnet-content {
+            width: 320px;
+            height: 175px;
+            margin: 50px auto;
+            background-image: url(../img/carnet_background.jpg);
+            background-size: contain;
+            background-repeat: no-repeat;
+            position: relative;
+
+            @media @media-laptop {
+                width: 600px;
+                height: 330px;
+            }
+
+            .row {
+                margin: 0px;
+            }
+
+            .carnet-info {
+                color: white;
+                font-size: 20px;
+                margin-top: 53px;
+
+                @media @media-laptop {
+                    font-size: 25px;
+                    margin-top: 90px;
+                }
+
+                .name-soci {
+                    text-transform: capitalize;
+
+                    @media @media-laptop {}
+                }
+
+                .num-soci {
+                    @media @media-laptop {}
+
+                }
+
+                .carnet {
+                    width: 190px !important;
+                    background: white;
+                    padding-top: 5px !important;
+
+                    @media @media-laptop {
+                        padding-top: 8px !important;
+                    }
+
+                    object {
+                        width: 190px !important;
+                    }
+                }
+            }
+
+            .carnet-img {
+                margin-top: 53px;
+
+                @media @media-laptop {
+                    margin-top: 90px;
+                }
+
+                img {
+                    box-shadow: 0px 0px 10px 4px #cf0e29;
+                }
+                .carnet-periode{
+                    margin-top: 5px;
+                    text-align: center;
+                    color: #ffffff;
+                }
+            }
+        }
+    }
+
+    .fas{
+        margin-right: 5px;
+    }
+}

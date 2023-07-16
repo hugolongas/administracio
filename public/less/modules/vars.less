@@ -1,0 +1,46 @@
+/// COLORS ///
+@color-body: #252b30;
+@color-aside:#ececec;
+@color-content:#f8f8f8;
+@color-white: #fff;
+@color-black: #000;
+
+/// MEDIA BREAKPOINTS ///
+@bp-mini: 360px;
+@bp-tablet: 768px; //col-sm
+@bp-laptop: 1024px; //col-md
+@bp-desktop: 1280px; //col-lg
+
+@bp-mini-end: (@bp-mini - 1);
+@bp-mobile-end: (@bp-tablet - 1);
+@bp-tablet-end: (@bp-laptop - 1);
+@bp-laptop-end: (@bp-desktop - 1);
+
+@media-mini: ~"only screen and (min-width: @{bp-mini})";
+@media-tablet: ~"only screen and (min-width: @{bp-tablet})";
+@media-laptop: ~"only screen and (min-width: @{bp-laptop})";
+@media-desktop: ~"only screen and (min-width: @{bp-desktop})";
+
+@media-only-mini: ~"only screen and (max-width: @{bp-mini-end})";
+@media-only-mobile: ~"only screen and (max-width: @{bp-mobile-end})";
+@media-only-tablet: ~"only screen and (min-width: @{bp-tablet}) and (max-width: @{bp-tablet-end})";
+@media-only-laptop: ~"only screen and (min-width: @{bp-laptop}) and (max-width: @{bp-laptop-end})";
+
+@font-Roboto: 'Roboto', sans-serif;
+body{
+    a{
+        color:@color-white;
+        &:hover{
+            color:@color-white;            
+        }
+        &:focus{
+            color:@color-white;            
+        }
+        &:active{
+            color:@color-white;            
+        }
+    }
+    .fa-angle-left {
+        margin-right: 25px;
+    }
+}
