@@ -5,7 +5,7 @@
             <div class="aside-item">General</div>
         </a>
     </li>
-    @if(Auth::user()->checkRoles(array("sccio")))
+    @if(Auth::user()->checkRoles(array("soci")))
     <li class="nav-item {{ request()->is('activitats')? 'active' : ''}}">        
         <a class="nav-link" href="{{url('activitats')}}">
             <i class="fas fa-calendar" aria-hidden="true"></i>
@@ -29,7 +29,7 @@
         </a>
     </li>
     @endif
-    @if(Auth::user()->isAdmin())
+    @if(Auth::user()->checkRoles(array("colaborador")))
     <li class="nav-item {{ Request::is('gestio-documents')? 'active' : ''}}">
         <a class="nav-link" href="{{url('gestio-documents')}}">
             <i class="fas fa-file-upload"  aria-hidden="true"></i>
@@ -37,7 +37,7 @@
         </a>
     </li>
     @endif
-    @if(Auth::user()->checkRoles(array("soci")))
+    @if(Auth::user()->checkRoles(array("soci","colaborador")))
     <li class="nav-item {{ Request::is('documents')? 'active' : ''}}">        
         <a class="nav-link" href="{{url('documents')}}">            
             <i class="fas fa-file-download" aria-hidden="true"></i>
@@ -54,10 +54,10 @@
     </li>
     @endif
     @if(Auth::user()->isAdmin())
-    <li class="nav-item {{ Request::is('seccions')? 'active' : ''}}">
-        <a class="nav-link" href="{{url('seccions')}}">
+    <li class="nav-item {{ Request::is('grups')? 'active' : ''}}">
+        <a class="nav-link" href="{{url('grups')}}">
             <i class="fas fa-list-alt" aria-hidden="true"></i>
-            <div class="aside-item">Seccions</div>
+            <div class="aside-item">Grups</div>
         </a>
     </li>
     @endif

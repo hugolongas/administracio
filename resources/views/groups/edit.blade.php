@@ -1,4 +1,4 @@
-@extends('layouts.master', ['body_class' => 'sections edit'])
+@extends('layouts.master', ['body_class' => 'groups edit'])
 
 @push('scripts')
 <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.16/datatables.min.js"></script>
@@ -20,31 +20,33 @@
             Editar Grup
         </h2>
         <div style="padding:30px">
-            <form action="{{route('sections.update',['id'=>$section->id]) }}" method="post">
+            <form action="{{route('groups.update',['id'=>$group->id]) }}" method="post">
                 {{ csrf_field() }}
                 {{ method_field('PUT') }}
                 <div class="row ">
                     <div class="col-12 ">
                         <div class="form-group">
-                            <label for="section_name ">Nom Grup</label>
-                            {{$section->section_name}}
+                            <label for="name ">Nom Grup</label>
+                            {{$group->name}}
                         </div>
                     </div>
                     <div class="col-12">
                         <div class="form-group">
-                            <label for="section_desc">Descripció:</label>
-                            <textarea name="section_desc" id="section_desc" class="form-control"
-                                rows="3">{{$section->description}}</textarea>
+                            <label for="desc">Descripció:</label>
+                            <textarea name="desc" id="desc" class="form-control"
+                                rows="3">{{$group->description}}</textarea>
                         </div>
                     </div>
                     <button type="button" class="btn btn-outline-dark" data-toggle="modal" data-target="#socisModal"
-                        data-sectionId="{{$section->id}}">Afegir Soci/Usuari</button>
+                        data-groupId="{{$group->id}}">Afegir Soci/Usuari</button>
                     <div class="col-12">
-                        @foreach($section->users as $user)                          
+                        @foreach($group->users as $user)   
+                        @if($user->username!='administracio')                       
                         <div class="badge badge-secondary">                            
                             {{$user->name}}                            
                             <i class="far fa-times-circle delete-user" data-id="{{$user->id}}"></i>
-                        </div>                        
+                        </div>     
+                        @endif                   
                         @endforeach
                     </div>
                 </div>
@@ -102,7 +104,7 @@
                 select: 'multi+shift',
                 selector: 'td:first-child',
                 order: [[ 1, 'asc' ]],
-                ajax: '{{route('sections.notInSection',$section->id)}}',
+                ajax: '{{route('groups.notInGroup',$group->id)}}',
                 scrollX: true,
                 columns: [
                     { data: 'id'},
@@ -118,14 +120,14 @@
             });
         });
         $("#addSoci").click(function(){
-            var idSocis = tableSocis.rows( { selected: true } ).data().pluck('id').toArray();
-            var requestData = JSON.stringify(idSocis);
+            var idUsers = tableSocis.rows( { selected: true } ).data().pluck('id').toArray();
+            var requestData = JSON.stringify(idUsers);
             console.log(requestData);
             $.ajaxSetup({
                 headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') }
             });
-            var url = '{{route('sections.attachSocis',$section->id)}}';
-            var param = {'idSocis':requestData};
+            var url = '{{route('groups.attachUser',$group->id)}}';
+            var param = {'idUsers':requestData};
             $.ajax({
                 data: param,
                 url: url,
@@ -138,13 +140,13 @@
         });
         $(".delete-user").click(function(){
             userId = $(this).attr("data-id");
-            id = {{$section->id}};
-            if(confirm("Estas segur que vols eliminar aquest soci de la secció?"))
+            id = {{$group->id}};
+            if(confirm("Estas segur que vols eliminar aquest soci/usuari del grup?"))
             {
                 $.ajaxSetup({
                     headers:{ 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') }
                 });
-                var url = '{{route('sections.detachSoci')}}';
+                var url = '{{route('groups.detachUser')}}';
                 var param = {'id':id,'userId':userId};
                 $.ajax({
                     data: param,

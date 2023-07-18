@@ -1,4 +1,4 @@
-@extends('layouts.master', ['body_class' => 'sections']) 
+@extends('layouts.master', ['body_class' => 'groups']) 
 @section('css')
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.16/datatables.min.css" /> 
 @stop 
@@ -10,17 +10,17 @@
 @section('content')
 <meta name="csrf-token" content="{{ csrf_token() }}">
 <div class="options-menu">
-	<a type="button" class="btn btn-outline-dark" href="{{ route('sections.create')}}">Crear Secció</a>
+	<a type="button" class="btn btn-outline-dark" href="{{ route('groups.create')}}">Crear Secció</a>
 </div>
 <table class="table table-bordered" id="group-table">
 	<thead>
 		<tr>
 			<th>Id</th>
-			<th>Nom del grup</th>
-			<th>Descripció</th>
-			<th>Número d'integrants</th>
 			<th>Veure</th>
 			<th>Editar</th>
+			<th>Nom del grup</th>
+			<th>Descripció</th>
+			<th>Número d'integrants</th>			
 			<th>Eliminar</th>
 		</tr>
 	</thead>
@@ -34,44 +34,26 @@
 		datatable = $('#group-table').DataTable({
 			processing: true,
 			serverSide: true,
-			ajax: '{{route('sections.data')}}',
+			ajax: '{{route('groups')}}',
 			columns: [
 			{ data: 'id'},
-			{ data: 'section_name'},
+			{data: 'view'},
+			{data: 'edit'},
+			{ data: 'name'},
 			{ data: 'description'},
-			{ data: 'members'},
-			{data: null},
-			{data: null},
-			{data: null, defaultContent: '<button class="btn btn-outline-secondary" accion="eliminar">Eliminar</button>'}
+			{ data: 'members'},			
+			{data: 'delete'}
 			],
 			columnDefs: [
 			{
 				targets: [0],
 				visible: false,
 				searchable: false
-			},
-			{
-				targets: [4],
-				render: function(data){
-					var id = data['id'];			
-					var url = '{{ route("sections.show", "id") }}';
-					url = url.replace('id', id); 		
-					return '<a class="btn btn-outline-info" role="button" href="'+url+'"><i class="fas fa-eye"></i>Veure</a>';
-				}
-			},
-			{
-				targets: [5],
-				render: function(data){
-					var id = data['id'];	
-					var url = '{{ route("sections.edit", "id") }}';
-					url = url.replace('id', id);				
-					return '<a class="btn btn-outline-warning" role="button" href="'+url+'"><i class="fas fa-pencil-alt"></i>Editar</a>';
-				}
-			}
+			}			
 			]
 		});
 
-		$('#users-table tbody').on('click', 'button', function () {
+		$('#group-table tbody').on('click', 'button', function () {
 		var data = datatable.row($(this).parents('tr')).data();
 		var accion = $(this).attr("accion");
 		$.ajaxSetup({
@@ -82,16 +64,16 @@
 		{
 			case "eliminar":
 			{
-				var seccio = data["section_name"];								
-				if(confirm("Segur que vols eliminar la secció: "+seccio)){
+				var group = data["name"];								
+				if(confirm("Segur que vols eliminar la grup: "+group)){
 				var id = data["id"];								
-			var url = '{{ route("sections.delete", "id") }}';
+			var url = '{{ route("groups.delete", "id") }}';
 			url = url.replace('id', id);
 			$.ajax({					
 				url: url,
 				type: 'POST',
 				success: function () {
-					$('#users-table').DataTable().ajax.reload();
+					$('#group-table').DataTable().ajax.reload();
 					var alert="<div id='custom-alert' class='alert alert-danger'>Secció Eliminada</div>";
 					$("#main").prepend(alert);
 					setTimeout(function(){

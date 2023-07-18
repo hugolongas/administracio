@@ -4,7 +4,7 @@
     <div class="col-md-12 ">
         <div class="card ">
             <div class="card-header text-center ">
-                Editar Secció
+                Editar Document
             </div>
             <div class="card-body " style="padding:30px ">
                 <form action="{{ route('documentsAdmin.update',$document) }}" method="post" enctype="multipart/form-data">                    
@@ -24,16 +24,16 @@
     
                         <div class="col-4">
                             <div class="form-group">
-                                <label for="section">Secció:</label>
-                                <select id="section" name="section" class="form-control" tabindex="2">
-                                    @foreach ($sections as $s)
-                                    <option value="{{$s->id}}" @if (old('section', $s->id)==$s->id) {{ 'selected' }} @endif>
-                                        {{$s->section_name}}
+                                <label for="group">Secció:</label>
+                                <select id="group" name="group" class="form-control" tabindex="2">
+                                    @foreach ($groups as $group)
+                                    <option value="{{$group->id}}" @if (old('group', $group->id)==$group->id) {{ 'selected' }} @endif>
+                                        {{$group->name}}
                                     </option>
                                     @endforeach
                                 </select>
-                                @if($errors->has('section'))
-                                        <span class="error-message">Has de seleccionar alguan secció</span>
+                                @if($errors->has('group'))
+                                        <span class="error-message">Has de seleccionar algun grup</span>
                                     @endif
                             </div>
                         </div>

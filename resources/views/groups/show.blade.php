@@ -6,15 +6,15 @@
 <div class=" row " style="margin-top:40px ">
     <div class="col-md-12 ">
         <h2>
-                {{$section->section_name}}
+                {{$group->name}}
         </h2>
         <div class="description">
-        {{$section->description}}
+        {{$group->description}}
         </div>
         <div class="num socis">
-            Membres de la secció: {{$section->members}}
+            Membres del grup: {{$group->members}}
             <div class="col-12">
-                    @foreach($section->users as $user)
+                    @foreach($group->users as $user)
                     @if($user->soci!=null)
                     <div class="badge badge-secondary">
                         {{$user->soci->name}} {{$user->soci->surname}} {{$user->soci->second_surname}}                        

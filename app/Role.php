@@ -6,10 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Role extends Model
 {
-	public function sections()
+	public function groups()
 	{
 		return $this
-		->belongsToMany(Section::class,'section_role')
+		->belongsToMany(Group::class,'group_role')
 		->withTimestamps();
 	}
 	public function promotors()

@@ -10,7 +10,7 @@ use App\Road;
 use App\Address;
 use App\User;
 use App\SociBaixa;
-use App\Section;
+use App\Group;
 use App\TipusSoci;
 use Storage;
 use Notification;
@@ -196,8 +196,8 @@ class SocisController extends Controller
 				$user->password = bcrypt(str_random(8));
 				$user->save();
 	
-				$section = Section::findOrFail(2);
-				$section->users()->attach($user);
+				$group = Group::findOrFail(2);
+				$group->users()->attach($user);
 				Notification::success('Soci Creat Correctament amb usuari');
 			}
 			else
@@ -366,8 +366,8 @@ class SocisController extends Controller
 				$user->email = $email;
 				$user->save();
 				
-				$section = Section::findOrFail(2);
-				$section->users()->attach($user);
+				$group = Group::findOrFail(2);
+				$group->users()->attach($user);
 			}
 			Notification::success('Soci actualitzat Correctament');
 		}
@@ -380,8 +380,8 @@ class SocisController extends Controller
 				$user->email = $email;
 				$user->password = bcrypt(str_random(8));
 				$user->save();
-				$section = Section::findOrFail(2);
-				$section->users()->attach($user);
+				$group = Group::findOrFail(2);
+				$group->users()->attach($user);
 				Notification::success("Soci actualitzat Correctament i s'ha creat un usuari");
 			}
 		}

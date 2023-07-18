@@ -84,14 +84,18 @@ class HomeController extends Controller
     private function _getColaborador()
     {
         $activities = $this->_getActivities();
-        if (Auth::user()->soci != null){            
-        $actes = $this->_getActes();
-        return view('sociHome')
-        ->with('actes', $actes)
+        if (Auth::user()->soci != null){      
+            $isSoci = true; 
+            $actes = $this->_getActes();
+            return view('sociHome')
+            ->with('actes', $actes)
             ->with('activities', $activities);
         }
+        $isSoci = false;
         return view('colaboradorHome')            
-            ->with('activities', $activities);
+            ->with('activities', $activities)
+            
+            ->with('isSoci', $isSoci);
     }
 
     private function _getActivities()

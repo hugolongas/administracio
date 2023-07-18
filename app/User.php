@@ -28,10 +28,10 @@ class User extends Authenticatable
         'password', 'remember_token', 'soci_id'
     ];
 
-    public function sections()
+    public function groups()
     {
         return $this
-            ->belongsToMany(Section::class)
+            ->belongsToMany(Group::class)
             ->withTimestamps();
     }
     public function promotors()
@@ -58,8 +58,8 @@ class User extends Authenticatable
         if($this->isAdmin()) return true;
         
         if (is_array($roles)) {
-            foreach ($this->sections as $section) {
-                if ($section->hasAnyRole($roles))
+            foreach ($this->groups as $group) {
+                if ($group->hasAnyRole($roles))
                     return true;
             }
             foreach ($this->promotors as $promotor) {
@@ -67,8 +67,8 @@ class User extends Authenticatable
                     return true;
             }
         } else {
-            foreach ($this->sections as $section) {
-                if ($section->hasRole($roles))
+            foreach ($this->groups as $group) {
+                if ($group->hasRole($roles))
                     return true;
             }
             foreach ($this->promotors as $promotor) {
@@ -81,16 +81,16 @@ class User extends Authenticatable
 
     public function isAdmin()
     {
-        foreach ($this->sections as $section) {
-            if ($section->hasRole('admin'))
+        foreach ($this->groups as $group) {
+            if ($group->hasRole('admin'))
                 return true;
         }
         return false;
     }
     public function isControl()
     {
-        foreach ($this->sections as $section) {
-            if ($section->hasRole('entrada'))
+        foreach ($this->groups as $group) {
+            if ($group->hasRole('entrada'))
                 return true;
         }
         return false;

@@ -32,6 +32,15 @@ Route::group(['middleware' => ['auth']], function () {
 	Route::get('activitats/editar/{id}', ['uses' => 'ActivitatsController@edit', 'as' => 'activitats.edit']);
 	Route::put('activitats/update/{id}', ['uses' => 'ActivitatsController@update', 'as' => 'activitats.update']);
 	Route::post('activitats/eliminar/{id}', ['uses' => 'ActivitatsController@delete', 'as' => 'activitats.delete']);
+	
+	Route::get('users/editar/{id}', ['uses' => 'UserController@edit', 'as' => 'users.edit']);
+	Route::put('users/update/{id}', ['uses' => 'UserController@update', 'as' => 'users.update']);
+
+	
+	//Documents
+	Route::get('documents',['uses'=>'DocumentsController@index','as'=>'documents']);
+	Route::get('documents/{document}',['uses'=>'DocumentsController@show','as'=>'documents.show']);
+	Route::get('documents/download/{document}',['uses'=>'DocumentsController@download','as'=>'documents.download']);
 
 	Route::group(['middleware'=>['role:admin;soci']], function () {//Votacions Concursos
 		
@@ -41,11 +50,6 @@ Route::group(['middleware' => ['auth']], function () {
 		Route::get('votacions/concurs/{id}',['uses'=>'VotController@voteContest','as'=>'votacions.vote']);		
 		Route::post('votacions/votat',['uses'=>'VotController@voteStore','as'=>'votacions.store']);
 	});
-
-	//Documents
-	Route::get('documents',['uses'=>'DocumentsController@index','as'=>'documents']);
-	Route::get('documents/{document}',['uses'=>'DocumentsController@show','as'=>'documents.show']);
-	
 
 	//Admin
 	Route::group(['middleware' => ['role:admin']], function () {
@@ -70,8 +74,6 @@ Route::group(['middleware' => ['auth']], function () {
 		Route::get('users/detall/{id}', ['uses' => 'UserController@show', 'as' => 'users.show']);
 		Route::get('users/crear', ['uses' => 'UserController@create', 'as' => 'users.create']);
 		Route::post('users/store', ['uses' => 'UserController@store', 'as' => 'users.store']);		
-		Route::get('users/editar/{id}', ['uses' => 'UserController@edit', 'as' => 'users.edit']);
-		Route::put('users/update/{id}', ['uses' => 'UserController@update', 'as' => 'users.update']);
 		Route::post('users/eliminar/{id}', ['uses' => 'UserController@delete', 'as' => 'users.delete']);
 		Route::post('users/activate/{id}', ['uses' => 'UserController@activate', 'as' => 'users.activate']);
 
@@ -85,13 +87,12 @@ Route::group(['middleware' => ['auth']], function () {
 		Route::put('rols/update/{id}', ['uses' => 'RolesController@update', 'as' => 'rols.update']);
 		Route::post('rols/eliminar/{id}', ['uses' => 'RolesController@delete', 'as' => 'rols.delete']);
 
-		//Seccions
-		Route::get('seccions', ['uses' => 'SectionsController@index', 'as' => 'sections']);
-		Route::get('seccions/getData', ['uses' => 'SectionsController@getData', 'as' => 'sections.data']);
-		Route::get('seccions/detall/{id}', ['uses' => 'SectionsController@show', 'as' => 'sections.show']);
-		Route::get('seccions/crear', ['uses' => 'SectionsController@create', 'as' => 'sections.create']);
-		Route::post('seccions/store', ['uses' => 'SectionsController@store', 'as' => 'sections.store']);		
-		Route::post('seccions/eliminar/{id}', ['uses' => 'SectionsController@delete', 'as' => 'sections.delete']);
+		//Groups
+		Route::get('grups', ['uses' => 'GroupsController@index', 'as' => 'groups']);		
+		Route::get('grups/detall/{id}', ['uses' => 'GroupsController@show', 'as' => 'groups.show']);
+		Route::get('grups/crear', ['uses' => 'GroupsController@create', 'as' => 'groups.create']);
+		Route::post('grups/store', ['uses' => 'GroupsController@store', 'as' => 'groups.store']);			
+		Route::post('grups/eliminar/{id}', ['uses' => 'GroupsController@delete', 'as' => 'groups.delete']);
 
 		//Promotors
 		Route::get('promotors', ['uses' => 'PromotorController@index', 'as' => 'promotors']);
@@ -129,31 +130,31 @@ Route::group(['middleware' => ['auth']], function () {
 		Route::post('concursos/projectes/eliminar/{id}',['uses'=>'ProjectController@delete','as'=>'project.delete']);		
 		Route::post('votacions/voteAdmin',['uses'=>'VotController@voteStoreAdmin','as'=>'votacions.storeAdmin']);
 		Route::post('votacions/votatAdmin',['uses'=>'VotController@voteMailAdmin','as'=>'votacions.storeVoteAdmin']);
-		Route::post('votacions/mesaAdmin',['uses'=>'VotController@voteMesaAdmin','as'=>'votacions.storeMesaVote']);
-
-		//Downloads
-		Route::get('gestio-documents',['uses'=>'DocumentsController@indexJunta','as'=>'documentsAdmin']);
-		Route::get('gestio-documents/crear',['uses'=>'DocumentsController@create','as'=>'documentsAdmin.create']);
-		Route::post('gestio-documents/store',['uses'=>'DocumentsController@store','as'=>'documentsAdmin.store']);
-		Route::get('gestio-documents/edit/{document}',['uses'=>'DocumentsController@edit','as'=>'documentsAdmin.edit']);
-		Route::put('gestio-documents/update/{document}',['uses'=>'DocumentsController@update','as'=>'documentsAdmin.update']);
-		Route::post('gestio-documents/delete/{id}',['uses'=>'DocumentsController@delete','as'=>'documentsAdmin.delete']);
+		Route::post('votacions/mesaAdmin',['uses'=>'VotController@voteMesaAdmin','as'=>'votacions.storeMesaVote']);		
 	});
 
 
 	Route::group(['middleware' => ['role:admin;colaborador;entrada']], function () {
-		Route::get('perfilSeccio/{id}', ['uses' => 'SectionsController@editSection', 'as' => 'sections.editSection']);
-		Route::get('seccions/getSocisNotInSection/{idSection}', ['uses' => 'SectionsController@socisNotInSection', 'as' => 'sections.notInSection']);
-		Route::post('seccions/attachSocis/{id}', ['uses' => 'SectionsController@attachSocis', 'as' => 'sections.attachSocis']);
-		Route::post('seccions/detachSoci', ['uses' => 'SectionsController@detachSoci', 'as' => 'sections.detachSoci']);		
-		Route::get('seccions/editar/{id}', ['uses' => 'SectionsController@edit', 'as' => 'sections.edit']);
-		Route::put('seccions/update/{id}', ['uses' => 'SectionsController@update', 'as' => 'sections.update']);		
+		Route::get('perfilSeccio/{id}', ['uses' => 'GroupsController@editGroup', 'as' => 'groups.editGroup']);
+		Route::get('groups/usersNotInGroup/{id}', ['uses' => 'GroupsController@usersNotInGroup', 'as' => 'groups.notInGroup']);
+		Route::post('groups/attachUser/{id}', ['uses' => 'GroupsController@attachUser', 'as' => 'groups.attachUser']);
+		Route::post('groups/detachUser', ['uses' => 'GroupsController@detachUser', 'as' => 'groups.detachUser']);		
+		Route::get('groups/editar/{id}', ['uses' => 'GroupsController@edit', 'as' => 'groups.edit']);
+		Route::put('groups/update/{id}', ['uses' => 'GroupsController@update', 'as' => 'groups.update']);		
 
 		//Gestio Activitats
 		Route::get('activitats/control_entrades', ['uses' => 'ActivitatsController@ActivitiesList', 'as' => 'entrades']);
 		Route::get('activitats/control_entrades/{id}', ['uses' => 'ActivitatsController@checkTickets', 'as' => 'entrades.control']);		
 		Route::post('checkSoci', ['uses' => 'ActivitatsController@checkSoci', 'as' => 'entrades.checkSoci']);		
 		Route::post('registrar_entrada', ['uses' => 'ActivitatsController@registerTicket', 'as' => 'entrades.ticket']);
+
+		//Gestio Documents		
+		Route::get('gestio-documents',['uses'=>'DocumentsController@indexJunta','as'=>'documentsAdmin']);
+		Route::get('gestio-documents/crear',['uses'=>'DocumentsController@create','as'=>'documentsAdmin.create']);
+		Route::post('gestio-documents/store',['uses'=>'DocumentsController@store','as'=>'documentsAdmin.store']);
+		Route::get('gestio-documents/edit/{document}',['uses'=>'DocumentsController@edit','as'=>'documentsAdmin.edit']);
+		Route::put('gestio-documents/update/{document}',['uses'=>'DocumentsController@update','as'=>'documentsAdmin.update']);
+		Route::post('gestio-documents/delete/{id}',['uses'=>'DocumentsController@delete','as'=>'documentsAdmin.delete']);
 	});
 
 	Route::group(['middleware' => ['role:admin;promotor']], function () {

@@ -1,4 +1,4 @@
-@extends('layouts.master', ['body_class' => 'sections crear']) 
+@extends('layouts.master', ['body_class' => 'groups crear']) 
 @section('content')
 <div class=" row " style="margin-top:40px ">
     <div class="col-md-12 ">
@@ -7,19 +7,19 @@
                 Crear Grup
             </div>
             <div class="card-body " style="padding:30px ">
-                <form action="{{ action('SectionsController@store') }}" method="post">
+                <form action="{{ action('GroupsController@store') }}" method="post">
                     {{ csrf_field() }}
                     <div class="row ">
                         <div class="col-12 ">
                             <div class="form-group">
-                                <label for="section_name ">Nom Grup</label>
-                                <input type="text" name="section_name" id="section_name" class="form-control ">
+                                <label for="name ">Nom Grup</label>
+                                <input type="text" name="name" id="name" class="form-control ">
                             </div>
                         </div>
                         <div class="col-12">
                             <div class="form-group">
-                                <label for="section_desc">Descripció:</label>
-                                <textarea name="section_desc" id="section_desc" class="form-control" rows="3"></textarea>
+                                <label for="desc">Descripció:</label>
+                                <textarea name="desc" id="desc" class="form-control" rows="3"></textarea>
                             </div>
                         </div>
                     </div>

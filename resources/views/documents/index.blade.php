@@ -7,7 +7,7 @@
 <div class="row">
     @foreach ($documents as $d)
     <div class="col-xs-6 col-md-4 col-lg-3 document-item">
-    <a href="{{ route('documents.show', ['document' => $d])}}">
+    <a href="{{ route('documents.download', ['document' => $d])}}">
         <div class="row">
             <div class="col-4">
                 <img src="{{asset('img')}}/{{$d->type}}.png" class="img-fluid">
@@ -16,7 +16,11 @@
                 {{$d->title}}
             </div>
             <div class="col-12 description">
-                {!! $d->summary!!}
+                @if (strlen($d->summary)>100)
+                {!! substr($d->summary, 0, 100)!!}...    
+                @else
+                {!! $d->summary!!}    
+                @endif
             </div>
         </div>
         </a>

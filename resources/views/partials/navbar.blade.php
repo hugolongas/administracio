@@ -23,20 +23,8 @@
                     @if(Auth::user()->soci!=null)
                     <a href="#" class="dropdown-item" data-toggle="modal" data-target="#modal-carnet">Carnet</a>
                     <a class="dropdown-item" href="{{route('profile')}}">Perfil</a>
-                @endif
-                @if(Auth::user()->sections!=null)
-                    @foreach(Auth::user()->sections as $section)
-                        @if($section->id!=2)
-                            <a class="dropdown-item" href="{{route('sections.edit',$section->id)}}">Editar
-                            {{$section->section_name}}</a>
-                        @endif
-                    @endforeach
-                @endif
-                @if(Auth::user()->promotors!=null)
-                    @foreach(Auth::user()->promotors as $promotor)
-                        <a class="dropdown-item" href="{{route('promotors.edit',$promotor->id)}}">Editar
-                        {{$promotor->promotor_name}}</a>
-                    @endforeach
+                    @else
+                    <a class="dropdown-item" href="{{route('users.edit',Auth::user()->id)}}">Editar usuari</a>
                 @endif
                 <hr />
                 <div class="dropdown-item">

@@ -24,7 +24,8 @@
                 <th>Resum</th>
                 <th>Tamany</th>
                 <th>Tipus</th>
-                <th>Secció</th>
+                <th>Grup</th>
+				<th>Descarregar</th>
 				<th>Eliminar</th>
 			</tr>
 		</thead>
@@ -38,7 +39,8 @@
                 <th>Resum</th>
                 <th>Tamany</th>
                 <th>Tipus</th>
-                <th>Secció</th>
+                <th>Grup</th>
+				<th>Descarregar</th>
 				<th>Eliminar</th>
 			</tr>
 		</tfoot>
@@ -64,7 +66,8 @@
 			{data: 'summary'},
             {data: 'size'},
             {data: 'type'},
-            {data: 'section'},
+            {data: 'group'},
+			{data: 'download'},
 			{data: 'delete'}
 			],
 			columnDefs: [

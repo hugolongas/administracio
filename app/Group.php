@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Section extends Model
+class Group extends Model
 {
     protected $appends = ['members'];
 
@@ -25,14 +25,14 @@ class Section extends Model
     public function users()
     {
         return $this
-            ->belongsToMany(User::class,'section_user')
+            ->belongsToMany(User::class,'group_user')
             ->withTimestamps();
     }
 
     public function roles()
     {
         return $this
-            ->belongsToMany(Role::class,'section_role')
+            ->belongsToMany(Role::class,'group_role')
             ->withTimestamps();
     }
 

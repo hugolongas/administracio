@@ -11,11 +11,11 @@ class Document extends Model
     public static function getUserDocuments(){
         $user = Auth::user();
         if($user->isAdmin()){
-            return Document::all();
+            return Document::orderBy('updated_at','desc')->get();
         }        
         else{
-            $sectionIds = $user->sections->pluck('id')->toArray();
-            $data =  Document::whereIn('section_id', $sectionIds)->get();
+            $groupsIds = $user->groups->pluck('id')->toArray();
+            $data =  Document::whereIn('group_id', $groupsIds)->orderBy('updated_at','desc')->get();;
             return $data;
         }
 

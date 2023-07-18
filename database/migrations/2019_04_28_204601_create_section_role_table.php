@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateSectionRoleTable extends Migration
+class CreateGroupRoleTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,10 @@ class CreateSectionRoleTable extends Migration
      */
     public function up()
     {
-        Schema::create('section_role', function (Blueprint $table) {
+        Schema::create('group_role', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('role_id')->unsigned();
-            $table->integer('section_id')->unsigned();
+            $table->integer('group_id')->unsigned();
             $table->timestamps();
         });
     }
@@ -28,6 +28,6 @@ class CreateSectionRoleTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('section_role');
+        Schema::dropIfExists('group_role');
     }
 }

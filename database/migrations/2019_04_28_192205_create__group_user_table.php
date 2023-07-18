@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateSectionUserTable extends Migration
+class CreateGroupUserTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,10 @@ class CreateSectionUserTable extends Migration
      */
     public function up()
     {
-        Schema::create('section_user', function (Blueprint $table) {
+        Schema::create('group_user', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('user_id')->unsigned();
-            $table->integer('section_id')->unsigned();
+            $table->integer('group_id')->unsigned();
             $table->timestamps();
         });
     }
@@ -28,6 +28,6 @@ class CreateSectionUserTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('section_user');
+        Schema::dropIfExists('group_user');
     }
 }

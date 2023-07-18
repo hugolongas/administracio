@@ -21,15 +21,15 @@
                         <div class="form-row">
                             <select id="created_by" name="created_by">
                                 @if ($user->isAdmin())
-                                    @foreach($sections as $section)                                        
-                                        @if($section->section_name!='Soci')
-                                            <option value="{{$section->section_name}}">{{$section->section_name}}</option>
+                                    @foreach($groups as $group)                                        
+                                        @if($group->name!='Soci')
+                                            <option value="{{$group->name}}">{{$group->name}}</option>
                                         @endif
                                     @endforeach
                                     @else
-                                    @foreach(Auth::user()->sections as $section)
-                                        @if($section->section_name!='Soci')
-                                            <option value="{{$section->section_name}}">{{$section->section_name}}</option>
+                                    @foreach(Auth::user()->groups as $group)
+                                        @if($group->name!='Soci')
+                                            <option value="{{$group->name}}">{{$group->name}}</option>
                                         @endif
                                     @endforeach                                
                                 @endif

@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Activitat;
 use Illuminate\Http\Request;
 use Yajra\Datatables\Datatables;
-use App\Section;
+use App\Group;
 use App\Soci;
 
 use Notification;
@@ -38,8 +38,8 @@ class ActivitatsController extends Controller
     public function create()
     {
         $user = Auth::user();
-        $sections = Section::all();
-        return view('activitats.create')->with('user', $user)->with('sections', $sections);
+        $groups = Group::all();
+        return view('activitats.create')->with('user', $user)->with('groups', $groups);
     }
 
     /**
@@ -215,11 +215,11 @@ class ActivitatsController extends Controller
         $creator = array();
         $name = $user->name;
         $creator[] = $name;
-        $sections = $user->sections;
-        foreach ($sections as $s) {
-            $section_name = $s->section_name;
-            if ($section_name != "soci") {
-                $creator[] = $section_name;
+        $groups = $user->groups;
+        foreach ($groups as $g) {
+            $name = $g->name;
+            if ($name != "soci") {
+                $creator[] = $name;
             }
         }
         if ($status == 'all') {

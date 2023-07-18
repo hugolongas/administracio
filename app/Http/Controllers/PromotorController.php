@@ -129,10 +129,4 @@ class PromotorController extends Controller
         $promotor->delete();
         $user->delete();
     }
-
-    public function editPromotor($id)
-    {
-        $promotor = Section::findOrFail($id);        
-        return view('promotors.editPromotor')->with('promotor',$promotor);
-    }
 }
