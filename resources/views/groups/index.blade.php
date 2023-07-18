@@ -10,7 +10,7 @@
 @section('content')
 <meta name="csrf-token" content="{{ csrf_token() }}">
 <div class="options-menu">
-	<a type="button" class="btn btn-outline-dark" href="{{ route('groups.create')}}">Crear Secció</a>
+	<a type="button" class="btn btn-outline-dark" href="{{ route('groups.create')}}">Crear Grup</a>
 </div>
 <table class="table table-bordered" id="group-table">
 	<thead>
