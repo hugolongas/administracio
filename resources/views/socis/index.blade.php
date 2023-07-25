@@ -222,7 +222,7 @@
 			}
 		});	
 
-		$('#users-table tbody').on('click', 'button', function (ev) {
+		$('#socis-table tbody').on('click', 'button', function (ev) {
 		var data = datatable.row($(this).parents('tr')).data();
 		var accion = $(this).attr("accion");		
 		switch (accion)
@@ -241,7 +241,7 @@
 				url: url,
 				type: 'POST',
 				success: function () {
-					$('#users-table').DataTable().ajax.reload();
+					$('#socis-table').DataTable().ajax.reload();
 					var alert="<div id='custom-alert' class='alert alert-danger'>Soci Eliminat</div>";
 					$("#content").prepend(alert);
 					setTimeout(function(){
@@ -267,7 +267,7 @@
 				success: function (resp) {					
 					alert="<div id='custom-alert' class='alert alert-success'>Soci donat d'Alta</div>";
 					$("#content").prepend(alert);
-					$('#users-table').DataTable().ajax.reload();
+					$('#socis-table').DataTable().ajax.reload();
 					setTimeout(function(){
 						$('#custom-alert').remove();
 					}, 5000);
@@ -327,7 +327,7 @@
 			success: function (resp) {					
 				alert="<div id='custom-alert' class='alert alert-success'>Soci donat de baixa</div>";
 				$("#content").prepend(alert);
-				$('#users-table').DataTable().ajax.reload();					
+				$('#socis-table').DataTable().ajax.reload();					
 				$("#modalUnregister").modal('hide');
 				setTimeout(function(){
 					$('#custom-alert').remove();
