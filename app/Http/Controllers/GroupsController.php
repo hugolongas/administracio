@@ -31,11 +31,14 @@ class GroupsController extends Controller
                     $url = route('groups.show', ['id' => $row->id]);
                     $btn = '<a href="' . $url . '" class="view btn btn-outline-primary">Veure</a>';                    
                     return $btn;
+                })->addColumn('members', function ($row) {
+                    $userCount = count($row->users);
+                    return $userCount;
                 })->addColumn('delete',function($row){
                     $btn = '<button class="btn btn-outline-danger" accion="delete">Eliminar</button>';                    
                     return $btn;
                 })
-                ->rawColumns(['view', 'edit','delete'])->make(true);
+                ->rawColumns(['view','members', 'edit','delete'])->make(true);
         }
         return view('groups.index');
     }
@@ -119,7 +122,7 @@ class GroupsController extends Controller
      */
     public function delete($id)
     {
-        $group = roup::findOrFail($id);
+        $group = Group::findOrFail($id);
 
         $group->roles()->detach();
         $group->users()->detach();

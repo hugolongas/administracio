@@ -5,23 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 
 class Group extends Model
-{
-    protected $appends = ['members'];
-
-    public function getMembersAttribute()
-    {
-        $users = $this->users;
-        $numSocis = 0;
-        foreach($users as $user)
-        {
-            if($user->soci!=null)
-            $numSocis++;
-        }
-        $this->attributes['members'] = $numSocis;
-        return $numSocis;
-    }
-
-    
+{    
     public function users()
     {
         return $this
