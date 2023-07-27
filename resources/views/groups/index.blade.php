@@ -62,7 +62,7 @@
 		});
 		switch (accion)
 		{
-			case "eliminar":
+			case "delete":
 			{
 				var group = data["name"];								
 				if(confirm("Segur que vols eliminar la grup: "+group)){

@@ -12,15 +12,16 @@
         {{$group->description}}
         </div>
         <div class="num socis">
-            Membres del grup: {{$group->members}}
+            Membres del grup: {{count($group->users)}}
             <div class="col-12">
-                    @foreach($group->users as $user)
-                    @if($user->soci!=null)
-                    <div class="badge badge-secondary">
-                        {{$user->soci->name}} {{$user->soci->surname}} {{$user->soci->second_surname}}                        
-                    </div>
-                    @endif
-                    @endforeach
+                @foreach($group->users as $user)   
+                @if($user->username!='administracio')                       
+                <div class="badge badge-secondary">                            
+                    {{$user->name}}                            
+                    <i class="far fa-times-circle delete-user" data-id="{{$user->id}}"></i>
+                </div>     
+                @endif                   
+                @endforeach
                 </div>
         </div>
     </div>
